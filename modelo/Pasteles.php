@@ -1,14 +1,14 @@
 <?php
 /*************************************************************
- * Panquesito.php
- * Objetivo: clase que encapsula el manejo del concepto Panquesito
+ * Pasteles.php
+ * Objetivo: clase que encapsula el manejo del concepto Pastel
  *			
  * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("Productos.php");
 
-class Panquesito extends Productos {
+class Pasteles extends Productos {
 private int $sTipo = 0;
 
 //Constantes para facilitar la lectura de Presentación
@@ -29,7 +29,7 @@ public CONST VEGANO = 4;
 			$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
 							  t1.sDescripcion, t1.sSabor, t1.sImagen, t1.sPrecio
 						FROM Productos t1
-						WHERE t1.nLinea = 4
+						WHERE t1.nLinea = 1
 						ORDER BY t1.sNombre;
 					";
 			$arrParams = array();
@@ -38,7 +38,7 @@ public CONST VEGANO = 4;
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Pastel();
+					$oProducto = new Pasteles();
 					$oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -54,7 +54,7 @@ public CONST VEGANO = 4;
 	}
 
 	public function buscar():bool {
-		throw new Exception("Panquesito->buscar: no implementada");
+		throw new Exception("Pasteles->buscar: no implementada");
 	}
 
 	public function buscarTodosFiltro():array {
@@ -66,13 +66,13 @@ public CONST VEGANO = 4;
 	$arrRet=array();
 		//En este ejemplo, el filtro es por tamaño
 		if (empty($this->sTamanio))
-			throw new Exception("Panquesito->buscarTodosFiltro: faltan datos");
+			throw new Exception("Pasteles->buscarTodosFiltro: faltan datos");
 		else{
 			if ($oAccesoDatos->conectar()){
 				$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
-							  t1.sDescripcion, t1.sSabor, sImagen, sPrecio
+							  t1.sDescripcion, t1.sSabor, t1.sImagen, t1.sPrecio
 						FROM Productos t1
-						WHERE t1.nLinea = 4 
+						WHERE t1.nLinea = 1 
 						AND t1.nTipo = :tipo
 						ORDER BY t1.sNombre;
 					";
@@ -82,7 +82,7 @@ public CONST VEGANO = 4;
 				if ($arrRS){
 					$arrRet = array();
 					foreach($arrRS as $arrLinea){
-						$oProducto = new Panquesito();
+						$oProducto = new Pasteles();
 						$oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -99,15 +99,15 @@ public CONST VEGANO = 4;
 	}
 
 	public function insertar():int {
-		throw new Exception("Panquesito->insertar: no implementada");
+		throw new Exception("Pasteles->insertar: no implementada");
 	}
 
 	public function modificar():int {
-		throw new Exception("Panquesito->modificar: no implementada");
+		throw new Exception("Pasteles->modificar: no implementada");
 	}
 
 	public function eliminar():int {
-		throw new Exception("Panquesito->eliminar: no implementada");
+		throw new Exception("Pasteles->eliminar: no implementada");
 	}
 	
     public function getTipo():int{

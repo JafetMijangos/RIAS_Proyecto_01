@@ -25,6 +25,7 @@ class ErroresAplic{
 	CONST ERROR_FORMATO = 16;
 	CONST ERROR_HORA = 17;
 	CONST ERROR_FECHA = 18;
+	CONST TIPO_PROD_INEXISTENTE = 19;
 	
 	public function getError(){
 		return $this->nError;
@@ -69,6 +70,8 @@ class ErroresAplic{
 			case self::ERROR_HORA: $sMsjError = "Error en el Formato de Hora";
 									break;
 			case self::ERROR_FECHA: $sMsjError = "Error en el Formato de Fecha";
+									break;
+			case self::TIPO_PROD_INEXISTENTE: $sMsjError = "El tipo de producto es incorrecto";
 									break;
 			default: $sMsjError = "Error desconocido";
 		}
