@@ -13,7 +13,7 @@ $sNombre="";
 
 	/*Verifica que hayan llegado los datos*/
 	if (isset($_REQUEST["txtCorreoUsu"]) && !empty($_REQUEST["txtCorreoUsu"]) &&
-		 preg_match("/^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/") &&
+		 preg_match("/^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/", $_REQUEST["txtCorreoUsu"]) &&
 		isset($_REQUEST["txtPwd"]) && !empty($_REQUEST["txtPwd"])){
 		try{
 			//Pasa los datos al objeto
