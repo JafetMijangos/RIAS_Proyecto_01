@@ -3,15 +3,17 @@
 Objetivo: control para iniciar sesión
 Autor:    Pasteleria
 */
-include_once("../modelo/Empleado.php");
+include_once("../modelo/Empleado.php");//Aun no existen como tal
 include_once("../modelo/Cliente.php");
 include_once("../utils/ErroresAplic.php");
 session_start(); //Le avisa al servidor que va a utilizar sesiones
 $nErr=-1;
 $oUsu=new Empleado();
 $sNombre="";
+
 	/*Verifica que hayan llegado los datos*/
 	if (isset($_REQUEST["txtCorreoUsu"]) && !empty($_REQUEST["txtCorreoUsu"]) &&
+		 preg_match("/^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/") &&
 		isset($_REQUEST["txtPwd"]) && !empty($_REQUEST["txtPwd"])){
 		try{
 			//Pasa los datos al objeto
@@ -28,9 +30,10 @@ $sNombre="";
 				$oUsu->setCorreo($_REQUEST["txtCorreoUsu"]);
 				$oUsu->setContrasenia($_REQUEST["txtPwd"]);
 				if ($oUsu->buscarCvePwd()){
-					$_SESSION["sNomFirmado"] = $oUsu->getNombreRazSoc();
+					//$_SESSION["sNomFirmado"] = $oUsu->getNombreRazSoc();//Vemos si sí lo ocupo
+					$_SESSION["sNombreFirmado"] = $oUsu->getNombreCompleto();
 					$_SESSION["sDescFirmado"] = "Cliente";
-					$_SESSION["sTipoFirmado"] = "e";
+					$_SESSION["sTipoFirmado"] = "e"; //Identificador de que viene de la tabla Clientes (No aparece en la DB)
 				}else //no es cliente ni empleado
 					$nErr = ErroresAplic::USR_DESCONOCIDO;
 			}
@@ -41,7 +44,7 @@ $sNombre="";
 		}
 	}
 	else
-		$nErr = ErroresAplic::FALTAN_DATOS;
+		$nErr = ErroresAplic::ERROR_CORREO;
 	
 	if ($nErr==-1){
 		$sCadJson = '{

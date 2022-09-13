@@ -60,7 +60,7 @@ class ErroresAplic{
 									break;
 			case self::ERROR_URL: $sMsjError = "Error de Formato de URL";
 									break;
-			case self::ERROR_CORREO: $sMsjError = "Error de Formato de Correo";
+			case self::ERROR_CORREO: $sMsjError = "Error de Formato de Correo o faltan datos";
 									break;
 		    case self::ERROR_PASSWORD: $sMsjError = "Error de Formato de Contraseña";
 									break;
