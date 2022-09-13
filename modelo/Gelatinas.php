@@ -101,15 +101,15 @@ public CONST VEGANO = 4;
 	}
 
 	public function insertar():int {
-		throw new Exception("Galletas->insertar: no implementada");
+		throw new Exception("Gelatinas->insertar: no implementada");
 	}
 
 	public function modificar():int {
-		throw new Exception("Galletas->modificar: no implementada");
+		throw new Exception("Gelatinas->modificar: no implementada");
 	}
 
 	public function eliminar():int {
-		throw new Exception("Galletas->eliminar: no implementada");
+		throw new Exception("Gelatinas->eliminar: no implementada");
 	}
 	
     public function getTipo():int{
