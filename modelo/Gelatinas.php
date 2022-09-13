@@ -1,6 +1,6 @@
 <?php
 /*************************************************************
- * Galletas.php
+ * Gelatinas.php
  * Objetivo: clase que encapsula el manejo del concepto Galletas
  *			
  * Autor: Pasteles
@@ -8,7 +8,7 @@
 error_reporting(E_ALL);
 include_once("Productos.php");
 
-class Galletas extends Productos {
+class Gelatinas extends Productos {
 private int $sTipo = 0;
 
 //Constantes para facilitar la lectura de Presentación
@@ -31,7 +31,7 @@ public CONST VEGANO = 4;
 			$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
 							  t1.sDescripcion, t1.sSabor,t1.sImagen,t1.sPrecio
 						FROM Productos t1
-						WHERE t1.nLinea = 2
+						WHERE t1.nLinea = 3
 						ORDER BY t1.sNombre;
 					";
 			$arrParams = array();
@@ -40,7 +40,7 @@ public CONST VEGANO = 4;
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Galletas();
+					$oProducto = new Gelatinas();
 					$oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -56,7 +56,7 @@ public CONST VEGANO = 4;
 	}
 
 	public function buscar():bool {
-		throw new Exception("Galletas->buscar: no implementada");
+		throw new Exception("Gelatinas->buscar: no implementada");
 	}
 
 	public function buscarTodosFiltro():array {
@@ -68,13 +68,13 @@ public CONST VEGANO = 4;
 	$arrRet=array();
 		//Filtro por Tipo
 		if (empty($this->nTipo))
-			throw new Exception("Galletas->buscarTodosFiltro: faltan datos");
+			throw new Exception("Gelatinas->buscarTodosFiltro: faltan datos");
 		else{
 			if ($oAccesoDatos->conectar()){
 				$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
 								  t1.sDescripcion, t1.sSabor,t1.sImagen,t1.sPrecio
 							FROM Productos t1
-							WHERE t1.nLinea = 2
+							WHERE t1.nLinea = 3
 							AND t1.nTipo = :tipo
 							ORDER BY t1.sNombre;
 						";
@@ -84,7 +84,7 @@ public CONST VEGANO = 4;
 				if ($arrRS){
 					$arrRet = array();
 					foreach($arrRS as $arrLinea){
-						$oProducto = new Galletas();
+						$oProducto = new Gelatinas();
 					    $oProducto->setClaveProducto($arrLinea[0]);
 					    $oProducto->setNombre($arrLinea[1]);
 					    $oProducto->setTipo($arrLinea[2]);
