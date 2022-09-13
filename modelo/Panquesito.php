@@ -44,7 +44,7 @@ public CONST VEGANO = 4;
 					$oProducto->setTipo($arrLinea[2]);
 					$oProducto->setDescripcion($arrLinea[3]);
 					$oProducto->setSabor($arrLinea[4]);
-					$oProducto->setImagen($arrLinea[5]);
+					$oProducto->setImg($arrLinea[5]);
 					$oProducto->setPrecio($arrLinea[6]);
 					$arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
 				}
@@ -88,7 +88,7 @@ public CONST VEGANO = 4;
 					$oProducto->setTipo($arrLinea[2]);
 					$oProducto->setDescripcion($arrLinea[3]);
 					$oProducto->setSabor($arrLinea[4]);
-					$oProducto->setImagen($arrLinea[5]);
+					$oProducto->setImg($arrLinea[5]);
 					$oProducto->setPrecio($arrLinea[6]);
 						$arrRet[] = $oProducto; 
 					}
