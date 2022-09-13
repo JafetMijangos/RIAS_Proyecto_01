@@ -3,7 +3,7 @@
  * Galletas.php
  * Objetivo: clase que encapsula el manejo del concepto Galletas
  *			
- * Autor: Pasteles
+ * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("Productos.php");
