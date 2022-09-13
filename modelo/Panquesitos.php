@@ -38,7 +38,7 @@ public CONST VEGANO = 4;
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Pastel();
+					$oProducto = new Panquesitos();
 					$oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);

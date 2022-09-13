@@ -27,7 +27,7 @@ $oErr = null;
 				if (empty($_REQUEST["cmbFiltro"]))
 					$arrEncontrados = $oProducto->buscarTodos();
 				else{
-					oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
+					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
 					$arrEncontrados = $oProducto->buscarTodosFiltro();
 				}
 			}else if ($nNum==2){
