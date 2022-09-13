@@ -12,9 +12,10 @@ include_once("AccesoDatos.php");
 abstract class Productos {
 protected int $nClaveProducto=0;
 protected string $sNombre="";
-protected string $sLinea="";
-protected string $sTipo="";
+protected int $nLinea="";
+protected int $nTipo="";
 protected string $sDescripcion="";
+protected string $sSabor="";
 protected string $sImagen = "";
 protected float $sPrecio = 0;
 
@@ -36,34 +37,40 @@ protected float $sPrecio = 0;
   public function setClaveProducto(int $valor){
       $this->nClave = $valor;
    }
-    public function getNombre():int{
+    public function getNombre():string{
        return $this->sNombre;
     }
-	public function setNombre(int $valor){
+	public function setNombre(string $valor){
        $this->sNombre = $valor;
     }
 	
-    public function getLinea():string{
-       return $this->sLinea;
+    public function getLinea():int{
+       return $this->nLinea;
     }
-	public function setLinea(string $valor){
-       $this->sLinea = $valor;
-    }
-    
-    public function getTipo():bool{
-       return $this->sTipo;
-    }
-	public function setTipo(bool $valor){
-       $this->sTipo = $valor;
+	public function setLinea(int $valor){
+       $this->nLinea = $valor;
     }
     
-    public function getDescripcion():bool{
+    public function getTipo():int{
+       return $this->nTipo;
+    }
+	public function setTipo(int $valor){
+       $this->nTipo = $valor;
+    }
+    
+    public function getDescripcion():string{
        return $this->sDescripcion;
     }
-	public function setDescripcion(bool $valor){
+	public function setDescripcion(string $valor){
        $this->sDescripcion = $valor;
     }
     
+    public function getSabor():string{
+      return $this->sDescripcion;
+   }
+  public function setSabor(string $valor){
+      $this->sDescripcion = $valor;
+   }
     public function getImg():string{
        return $this->sImagen;
     }
