@@ -19,7 +19,7 @@ class Productos {
    protected string $sImagen = "";
    protected float $sPrecio = 0;
 
-	abstract public function buscar(): bool;
+   public function buscar() {}
 
 	public function buscarTodos(){
       $oAccesoDatos=new AccesoDatos();
@@ -40,7 +40,7 @@ class Productos {
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Producto();
+					$oProducto = new Productos();
 					$oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -75,7 +75,7 @@ class Productos {
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Producto();
+					$oProducto = new Productos();
                $oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -112,7 +112,7 @@ class Productos {
 			if ($arrRS){
 				$arrRet = array();
 				foreach($arrRS as $arrLinea){
-					$oProducto = new Producto();
+					$oProducto = new Productos();
                $oProducto->setClaveProducto($arrLinea[0]);
 					$oProducto->setNombre($arrLinea[1]);
 					$oProducto->setTipo($arrLinea[2]);
@@ -127,16 +127,16 @@ class Productos {
 		return $arrRet;
    }
 
-	abstract public function insertar():int;
+	 public function insertar(){}
 
-	abstract public function modificar():int;
+	 public function modificar(){}
 
-	abstract public function eliminar():int;
+	 public function eliminar(){}
 
-   public function getClaveProducto():int{
+    public function getClaveProducto():int{
       return $this->nClave;
    }
-  public function setClaveProducto(int $valor){
+    public function setClaveProducto(int $valor){
       $this->nClave = $valor;
    }
     public function getNombre():string{
