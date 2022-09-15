@@ -9,21 +9,123 @@
 error_reporting(E_ALL);
 include_once("AccesoDatos.php");
 
-abstract class Productos {
-protected int $nClaveProducto=0;
-protected string $sNombre="";
-protected int $nLinea="";
-protected int $nTipo="";
-protected string $sDescripcion="";
-protected string $sSabor="";
-protected string $sImagen = "";
-protected float $sPrecio = 0;
+class Productos {
+   protected int $nClaveProducto=0;
+   protected string $sNombre="";
+   protected int $nLinea="";
+   protected int $nTipo="";
+   protected string $sDescripcion="";
+   protected string $sSabor="";
+   protected string $sImagen = "";
+   protected float $sPrecio = 0;
 
 	abstract public function buscar(): bool;
 
-	abstract public function buscarTodos():array;
+	public function buscarTodos(){
+      $oAccesoDatos=new AccesoDatos();
+	   $sQuery="";
+	   $arrRS=null;
+	   $arrLinea = null;
+	   $oProducto=null;
+	   $arrRet=array();
+		if ($oAccesoDatos->conectar()){
+			$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
+							  t1.sDescripcion, t1.sSabor, t1.sImagen, t1.sPrecio
+						FROM Productos t1
+						ORDER BY t1.sNombre;
+					";
+			$arrParams = array();
+			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+			$oAccesoDatos->desconectar();
+			if ($arrRS){
+				$arrRet = array();
+				foreach($arrRS as $arrLinea){
+					$oProducto = new Producto();
+					$oProducto->setClaveProducto($arrLinea[0]);
+					$oProducto->setNombre($arrLinea[1]);
+					$oProducto->setTipo($arrLinea[2]);
+					$oProducto->setDescripcion($arrLinea[3]);
+					$oProducto->setSabor($arrLinea[4]);
+					$oProducto->setImg($arrLinea[5]);
+					$oProducto->setPrecio($arrLinea[6]);
+					$arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
+				}
+			}
+		} 
+		return $arrRet;
+   }
 
-	abstract public function buscarTodosFiltro():array;
+   public function buscarTodosFiltro(){
+      $oAccesoDatos=new AccesoDatos();
+      $sQuery="";
+      $arrRS=null;
+      $arrLinea = null;
+      $oProducto=null;
+      $arrRet=array();
+         if ($oAccesoDatos->conectar()){
+			$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
+							  t1.sDescripcion, t1.sSabor, t1.sImagen, t1.sPrecio
+						FROM Productos t1
+						WHERE t1.nLinea = :linea
+						ORDER BY t1.sNombre;
+					";
+			$arrParams = array(":linea"=>$this->nLinea);
+			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+			$oAccesoDatos->desconectar();
+			if ($arrRS){
+				$arrRet = array();
+				foreach($arrRS as $arrLinea){
+					$oProducto = new Producto();
+               $oProducto->setClaveProducto($arrLinea[0]);
+					$oProducto->setNombre($arrLinea[1]);
+					$oProducto->setTipo($arrLinea[2]);
+					$oProducto->setDescripcion($arrLinea[3]);
+					$oProducto->setSabor($arrLinea[4]);
+					$oProducto->setImg($arrLinea[5]);
+					$oProducto->setPrecio($arrLinea[6]);
+					$arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
+				}
+			}
+		} 
+		return $arrRet;
+   }
+   //Función por si quieres hacerlo de doble filtro
+   public function buscarTodosDobleFiltro(){
+      $oAccesoDatos=new AccesoDatos();
+      $sQuery="";
+      $arrRS=null;
+      $arrLinea = null;
+      $oProducto=null;
+      $arrRet=array();
+         if ($oAccesoDatos->conectar()){
+			$sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, 
+							  t1.sDescripcion, t1.sSabor, t1.sImagen, t1.sPrecio
+						FROM Productos t1
+						WHERE t1.nLinea = :linea
+                  		and t1.nTipo = :tipo
+						ORDER BY t1.sNombre;
+					";
+			$arrParams = array(":linea"=>$this->nLinea, ":tipo"=>$this->nTipo);
+			$arrParams = array();
+			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+			$oAccesoDatos->desconectar();
+			if ($arrRS){
+				$arrRet = array();
+				foreach($arrRS as $arrLinea){
+					$oProducto = new Producto();
+               $oProducto->setClaveProducto($arrLinea[0]);
+					$oProducto->setNombre($arrLinea[1]);
+					$oProducto->setTipo($arrLinea[2]);
+					$oProducto->setDescripcion($arrLinea[3]);
+					$oProducto->setSabor($arrLinea[4]);
+					$oProducto->setImg($arrLinea[5]);
+					$oProducto->setPrecio($arrLinea[6]);
+					$arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
+				}
+			}
+		} 
+		return $arrRet;
+   }
 
 	abstract public function insertar():int;
 
