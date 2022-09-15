@@ -55,7 +55,7 @@ class Productos {
 		return $arrRet;
    }
 
-   public function buscarTodosFiltro(){
+   public function buscarTodosFiltro(int $linea){
       $oAccesoDatos=new AccesoDatos();
       $sQuery="";
       $arrRS=null;
@@ -69,7 +69,7 @@ class Productos {
 						WHERE t1.nLinea = :linea
 						ORDER BY t1.sNombre;
 					";
-			$arrParams = array(":linea"=>$this->nLinea);
+			$arrParams = array(":linea"=>$this->linea);
 			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
 			$oAccesoDatos->desconectar();
 			if ($arrRS){
@@ -90,7 +90,7 @@ class Productos {
 		return $arrRet;
    }
    //Función por si quieres hacerlo de doble filtro
-   public function buscarTodosDobleFiltro(){
+   public function buscarTodosDobleFiltro(int $linea, int $tipo){
       $oAccesoDatos=new AccesoDatos();
       $sQuery="";
       $arrRS=null;

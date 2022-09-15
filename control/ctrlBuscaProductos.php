@@ -3,10 +3,7 @@
 Objetivo: control para buscar productos, considera filtrado
 Autor:    Pastelería
 */
-include_once("../modelo/Pasteles.php");
-include_once("../modelo/Galletas.php");
-include_once("../modelo/Gelatinas.php");
-include_once("../modelo/Panquesitos.php");
+include_once("../modelo/Productos.php");
 include_once("../utils/ErroresAplic.php");
 $nErr=-1;
 $nNum=0;
@@ -15,23 +12,59 @@ $arrEncontrados=null;
 $sJsonRet = "";
 $oErr = null;
 	/*Verifica que haya llegado el tipo y el filtro (que puede ser vacío)*/
-	if (isset($_REQUEST["cmbTipo"]) && !empty($_REQUEST["cmbTipo"]) &&
-		isset($_REQUEST["cmbFiltro"])){
+	if (isset($_REQUEST["nLinea"]) && !empty($_REQUEST["nLinea"]) &&
+		isset($_REQUEST["nTipo"])){
 		try{
 			//Convierte el tipo indicado a número
-			$nNum = intval(($_REQUEST["cmbTipo"]),10);
-			
+			$nNum = intval(($_REQUEST["nLinea"]),10);
+			$nNum2 = intval(($_REQUEST["nTipo"]),10);
 			//Busca en la base de datos de acuerdo al tipo indicado
 			$oProducto = new Productos();
-			if ($nNum==1){
+			if ($nNum==0){
 				$arrEncontrados = $oProducto->buscarTodos();
-			}else if ($nNum==2){
-				$arrEncontrados = $oProducto->buscarTodosFiltro();
-			}else if ($nNum==3){
-				$arrEncontrados = $oProducto->buscarTodosDobleFiltro();
-			}else
+			}else if ($nNum==1){//Pasteles
+				$arrEncontrados = $oProducto->buscarTodosFiltro($_REQUEST["nLinea"]);//Así se debe llamar el select
+			}else if ($nNum==2){//Galletas
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+			}else if ($nNum==3){//Gelatinas
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+			}else if ($nNum==4){//Panquesitos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+			}else if ($nNum==1 && $nNum2==1){//Para pastel normal
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==1 && $nNum2==2){//Para pastel dietetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==1 && $nNum2==3){//Para pastel para diabeticos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==1 && $nNum2==4){//Para pastel para veganos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==2 && $nNum2==1){//Para Galletas normal
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==2 && $nNum2==2){//Para Galletas dietetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==2 && $nNum2==3){//Para Galletas diabetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);	
+			}else if ($nNum==2 && $nNum2==4){//Para Galletas veganos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNelse
+			}else if ($nNum==3 && $nNum2==1){//Para Gelatinas normal
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==3 && $nNum2==2){//Para Gelatinas dietetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==3 && $nNum2==3){//Para Gelatinas diabetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);	
+			}else if ($nNum==3 && $nNum2==4){//Para Gelatinas veganos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==4 && $nNum2==1){//Para Panquecitos normal
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==4 && $nNum2==2){//Para Panquecitos dietetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else if ($nNum==4 && $nNum2==3){//Para Panquecitos diabetico
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);	
+			}else if ($nNum==4 && $nNum2==4){//Para Panquecitos veganos
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
+			}else{
 				$nErr = ErroresAplic::TIPO_PROD_INEXISTENTE;
-		}catch(Exception $e){
+			}catch(Exception $e){
 			//Enviar el error específico a la bitácora de php (dentro de php\logs\php_error_log
 			error_log($e->getFile()." ".$e->getLine()." ".$e->getMessage(),0);
 			$nErr = ErroresAplic::ERROR_EN_BD;
