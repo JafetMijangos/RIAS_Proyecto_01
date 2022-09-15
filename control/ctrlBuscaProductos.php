@@ -22,41 +22,13 @@ $oErr = null;
 			$nNum = intval(($_REQUEST["cmbTipo"]),10);
 			
 			//Busca en la base de datos de acuerdo al tipo indicado
+			$oProducto = new Productos();
 			if ($nNum==1){
-				$oProducto = new Pasteles();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
-					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
-				}
+				$arrEncontrados = $oProducto->buscarTodos();
 			}else if ($nNum==2){
-				$oProducto = new Galletas();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
-					//sería deseable validar que sea número lo que se recibe
-					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
-				}
+				$arrEncontrados = $oProducto->buscarTodosFiltro();
 			}else if ($nNum==3){
-				$oProducto = new Gelatinas();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
-					//sería deseable validar que sea número lo que se recibe
-					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
-				}
-			}else if ($nNum==4){
-				$oProducto = new Panquesitos();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
-					//sería deseable validar que sea número lo que se recibe
-					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
-				}
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro();
 			}else
 				$nErr = ErroresAplic::TIPO_PROD_INEXISTENTE;
 		}catch(Exception $e){
