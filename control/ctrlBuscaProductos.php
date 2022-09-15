@@ -25,11 +25,11 @@ $oErr = null;
 			}else if ($nNum==1){//Pasteles
 				$arrEncontrados = $oProducto->buscarTodosFiltro($_REQUEST["nLinea"]);//Así se debe llamar el select
 			}else if ($nNum==2){//Galletas
-				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+				$arrEncontrados = $oProducto->buscarTodosFiltro($_REQUEST["nLinea"]);
 			}else if ($nNum==3){//Gelatinas
-				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+				$arrEncontrados = $oProducto->buscarTodosFiltro($_REQUEST["nLinea"]);
 			}else if ($nNum==4){//Panquesitos
-				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($_REQUEST["nLinea"]);
+				$arrEncontrados = $oProducto->buscarTodosFiltro($_REQUEST["nLinea"]);
 			}else if ($nNum==1 && $nNum2==1){//Para pastel normal
 				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
 			}else if ($nNum==1 && $nNum2==2){//Para pastel dietetico
@@ -45,7 +45,7 @@ $oErr = null;
 			}else if ($nNum==2 && $nNum2==3){//Para Galletas diabetico
 				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);	
 			}else if ($nNum==2 && $nNum2==4){//Para Galletas veganos
-				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNelse
+				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
 			}else if ($nNum==3 && $nNum2==1){//Para Gelatinas normal
 				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
 			}else if ($nNum==3 && $nNum2==2){//Para Gelatinas dietetico
@@ -64,6 +64,7 @@ $oErr = null;
 				$arrEncontrados = $oProducto->buscarTodosDobleFiltro($nNum,$nNum2);
 			}else{
 				$nErr = ErroresAplic::TIPO_PROD_INEXISTENTE;
+			}
 			}catch(Exception $e){
 			//Enviar el error específico a la bitácora de php (dentro de php\logs\php_error_log
 			error_log($e->getFile()." ".$e->getLine()." ".$e->getMessage(),0);
