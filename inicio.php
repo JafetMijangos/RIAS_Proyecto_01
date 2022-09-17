@@ -14,11 +14,15 @@ session_start();
             <main id="main-content">
 				<section>
 					<header>
-						<h3>Bienvenido <?php echo $_SESSION["sNomFirmado"]; ?></h3>
+					    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+						    <h2 class="text-primary font-secondary">Bienvenido <?php echo $_SESSION["sNomFirmado"]; ?></h2>
+						</div>
 					</header>
-					<h5>Est&aacute;s firmado como 
-					<?php echo $_SESSION["sDescFirmado"]; ?>
-					</h5>
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+					    <h1 class="display-4 text-uppercase">Est&aacute;s firmado como 
+					        <?php echo $_SESSION["sDescFirmado"]; ?>
+					    </h1>
+					</div>
 				</section>
 			</main>    
 

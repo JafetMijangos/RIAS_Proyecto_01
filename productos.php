@@ -20,10 +20,14 @@ $nErr = -1;
 ?>
 			<main id="main-content">
 				<section>
-					<header>
-						<h3>Gestionar Productos</h3>
-					</header>
-					EN CONSTRUCCI&Oacute;N, disculpe las molestias
+				<header>
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+					    <h2 class="text-primary font-secondary">Gestionar Productos</h2>
+					</div>
+				</header>
+				    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+					    <h1 class="display-4 text-uppercase">EN CONSTRUCCI&Oacute;N, disculpe las molestias</h1>
+				    </div>
 				</section>
 			</main>
 <?php

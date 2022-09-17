@@ -1,7 +1,7 @@
 <?php
 include_once("header.html");
 include_once("menu.php");
-include_once("heroVideo.html");
+include_once("hero.html");
 ?>	
     
     <!-- ingresar Start -->

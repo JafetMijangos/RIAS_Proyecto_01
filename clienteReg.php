@@ -16,31 +16,31 @@ include_once("menu.php");
                     <br/><br/><br/><br/><br/><br/>
                         <div class="row g-3">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Tu Nombre" style="height: 55px;" required>
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Tu Nombre" id="nombreCompleto" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Tu Correo" style="height: 55px;" required>
+                                <input type="email" class="form-control bg-light border-0 px-4" placeholder="Tu Correo" id="txtCorreoUsu" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Calle" style="height: 55px;" required>
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Calle" id="calle" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input class="form-control bg-light border-0 px-4" placeholder="#" style="height: 55px;" required pattern="[0-9]{1,5}">
+                                <input class="form-control bg-light border-0 px-4" placeholder="#" id="numero" style="height: 55px;" required pattern="[0-9]{1,5}">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Colonia" style="height: 55px;" required>
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Colonia" id="colonia" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Ciudad" style="height: 55px;" required>
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Ciudad" id="ciudad" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Estado" style="height: 55px;" required>
+                                <input type="text" class="form-control bg-light border-0 px-4" placeholder="Estado" id="estado" style="height: 55px;" required>
                             </div>
                             <div class="col-sm-6">
-                                <input class="form-control bg-light border-0 px-4" placeholder="Tel. Celular" style="height: 55px;" required pattern="[0-9]{10}">
+                                <input class="form-control bg-light border-0 px-4" placeholder="Tel. Celular" id="telefonoCell" style="height: 55px;" required pattern="[0-9]{10}">
                             </div>
                             <div class="col-sm-6">
-                                <input class="form-control bg-light border-0 px-4" placeholder="Tel. Casa" style="height: 55px;" required pattern="[0-9]{10}">
+                                <input class="form-control bg-light border-0 px-4" placeholder="Tel. Casa" id="telefonoCasa" style="height: 55px;" required pattern="[0-9]{10}">
                             </div>
                             <div class="col-sm-12">
                                 <button class="btn btn-primary border-inner w-100 py-3" type="submit">Registrarse</button>

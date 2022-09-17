@@ -21,9 +21,14 @@ $nErr = -1;
 			<main id="main-content">
 				<section>
 					<header>
-						<h3>Comprar producto</h3>
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+						    <h2 class="text-primary font-secondary">Comprar producto</h2>
+						</div>
 					</header>
-					EN CONSTRUCCI&Oacute;N, disculpe las molestias
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+					    <h1 class="display-4 text-uppercase">EN CONSTRUCCI&Oacute;N, disculpe las molestias</h1>
+					</div>
+					
 				</section>
 			</main>
 <?php

@@ -1,3 +1,42 @@
 .tituloN{
     color: black;
 }
+
+.select{
+    background-color: #efc76f;
+    border: #e4a111;
+}
+
+table{
+	border-collapse: collapse; /*no aparezcan los bordes*/
+	width: 100%;
+}
+td, th {
+  border: 0.02em solid rgb(119, 64, 9);
+  padding: 0.5em;
+}
+th {
+  text-align: center;
+  background-color: #e4a111;
+}
+tr:nth-child(even){/*el color del fondo de renglones impares*/
+	background-color: #f7dca6;
+}
+
+/* ANIMACION VISTA EN CLASE*/
+.paraTraslado{
+	padding: 2rem;
+	
+    animation-name: mueve;
+    animation-duration: 5s;
+    animation-iteration-count: 3;
+    animation-direction: alternate; /* reverse, alternate*/
+}
+
+@keyframes mueve {
+    25% {transform: translate(8rem,0rem);}
+    50%  {transform: translate(8rem,8rem);}
+    75% {transform: translate(0rem,8rem);}
+    100% {transform: translate(0rem,0rem);}
+}
+
