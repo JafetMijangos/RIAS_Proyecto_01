@@ -30,6 +30,7 @@ let datosFrm = "";
 			procesa(datosConvertidos);
 		})
 		.catch( (error) => {
+			alert("Error en la llamada");
 			errorDetectado(error);
 		});
 	}
