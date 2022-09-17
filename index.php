@@ -7,11 +7,12 @@ include_once("heroVideo.html");
     <!-- ingresar Start -->
     <div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">
         <div class="container">
+        <script src="js/ctrlLogin.js" async="true"></script>
             <div class="row g-5">
-            <div class="col-lg-12 col-md-6 text-center">
-                        <h1 class="tituloN">Ingresar al Sistema</h1>
-            </div>
-            <div class="col-lg-12 col-md-6 text-center">
+                <div class="col-lg-12 col-md-6 text-center">
+                            <h1 class="tituloN">Ingresar al Sistema</h1>
+                </div>
+                <div class="col-lg-12 col-md-6 text-center">
 					<form id="frmLogin">
                     <br/>
                         <br/>

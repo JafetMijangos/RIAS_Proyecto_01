@@ -1,6 +1,15 @@
 <?php
+
+include_once("modelo/Empleado.php");
+include_once("modelo/Cliente.php");
+session_start();
 include_once("header.html");
 include_once("menu.php");
+
+$sStyle = "none";
+	if (isset($_SESSION["sTipoFirmado"])){
+		$sStyle = "block";
+	}
 ?>
     <!--Tabla Proferora-->
     <main id="main-content">
@@ -39,10 +48,10 @@ include_once("menu.php");
 								<tr>
 									<th>Clave</th>
 									<th>Nombre</th>
+									<th>Imagen</th>
 									<th>Tipo</th>
 									<th>Descripcion</th>
 									<th>Sabor</th>
-                                    <th>Imagen</th>
 									<th id="tdPrecio" style="display:<?php echo $sStyle;?>">Precio</th>
 								</tr>
 							</thead>
