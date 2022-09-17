@@ -24,17 +24,17 @@ $sStyle = "none";
                     <div class="container-fluid about py-5">
                     <div class="container">
 					<form id="frmBuscarProd">
-						<label class="text-primary text-uppercase mb-4" for="cmbTipo">Tipo</label>
-						<select class="select" id="cmbTipo" required>
-							<option value="">Seleccione</option>
+						<label class="text-primary text-uppercase mb-4" for="nLinea">Tipo</label>
+						<select class="select" id="nLinea" required>
+							<option value="0">Todos</option>
 							<option value="1">Pasteles</option>
 							<option value="2">Galletas</option>
                             <option value="3">Gelatinas</option>
                             <option value="4">Panquesitos</option>
 						</select>
-						<label class="text-primary text-uppercase mb-4" for="cmbFiltro">Filtro</label>
-						<select class="select"s id="cmbFiltro">
-							<option value="">Todos</option>
+						<label class="text-primary text-uppercase mb-4" for="nTipo">Filtro</label>
+						<select class="select"s id="nTipo">
+							<option value="0">Todos</option>
 						</select>
 						<br/>
 						<br/>
@@ -53,7 +53,7 @@ $sStyle = "none";
 									<th>Tipo</th>
 									<th>Descripcion</th>
 									<th>Sabor</th>
-									<th id="tdPrecio" style="display:<?php echo $sStyle;?>">Precio</th>
+									<th id="sPrecio" style="display:<?php echo $sStyle;?>">Precio</th>
 								</tr>
 							</thead>
 							<tbody id="tblBodyProds">

@@ -6,8 +6,8 @@ Autor:    BAOZ
 */
 
 function llenaFiltros(){
-let oCmb = document.getElementById("cmbTipo");
-let oCmbFiltro = document.getElementById("cmbFiltro");
+let oCmb = document.getElementById("nLinea");
+let oCmbFiltro = document.getElementById("nTipo");
 	if (oCmb===null || oCmbFiltro===null){
 		alert('Error de referencias');
 	}else{
@@ -30,8 +30,8 @@ let oCmbFiltro = document.getElementById("cmbFiltro");
 
 function llamaBusqueda(){
 let urlLlamada = "control/ctrlBuscaProductos.php";
-let oCmb = document.getElementById("cmbTipo");
-let oCmbFiltro = document.getElementById("cmbFiltro");
+let oCmb = document.getElementById("nLinea");
+let oCmbFiltro = document.getElementById("nTipo");
 let sQueryString = "";
 
 // revisamos los filtros
@@ -40,7 +40,7 @@ let sQueryString = "";
 	}else{
 
 		//se hace la llamada
-		sQueryString = "?cmbTipo="+oCmb.options[oCmb.selectedIndex].value + "&cmbFiltro="+
+		sQueryString = "?nLinea="+oCmb.options[oCmb.selectedIndex].value + "&nTipo="+
 						(oCmbFiltro.selectedIndex===0?"":oCmbFiltro.options[oCmbFiltro.selectedIndex].value);
 		fetch(urlLlamada+sQueryString)
 		.then( (response) => {return response.json();})
@@ -60,7 +60,7 @@ function procesaProductosEncontrados(oDatos){
 let oNodoFrm = document.getElementById("frmBuscarProd");
 let oNodoDiv = document.getElementById("resBuscarProd");
 let oTblBody = document.getElementById("tblBodyProds"); 
-let oCelCabPrecio = document.getElementById("tdPrecio");
+let oCelCabPrecio = document.getElementById("sPrecio");
 let oCeldaCve, oCeldaNombre, oCeldaImagen, oCeldaTipo, oCeldaDescripcion, oCeldaSabor, oCeldaPrecio;
 let sError = "";
 let oFmt = new Intl.NumberFormat('es-MX', {
@@ -131,7 +131,7 @@ let oFmt = new Intl.NumberFormat('es-MX', {
 function configura(){
 let frm = document.getElementById('frmBuscarProd');	
 let btn = document.getElementById('btnBuscar');	
-let oCmb = document.getElementById("cmbTipo");
+let oCmb = document.getElementById("nLinea");
 	if (frm !== null && btn !== null && oCmb !== null){
 		frm.addEventListener("submit", 
 			function(evt){
