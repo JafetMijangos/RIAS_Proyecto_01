@@ -54,6 +54,7 @@ let sError = "";
 				document.getElementById("mnuInicio").href = "inicio.php";
 				document.getElementById("mnuSalir").className = "menu";
 				
+				/*
 				if (oDatos.data.sDescTipo === "Cajero"){
 					document.getElementById("mnuCltes").className = "menu";
 				}else if (oDatos.data.sDescTipo === "Almacenista"){
@@ -64,7 +65,7 @@ let sError = "";
 					document.getElementById("mnuReg").className = "menu";
 					document.getElementById("mnuUsos").className = "menu";
 				}
-				
+				*/
 				//Ocultar formulario y mostrar bienvenida*/
 				oNodoFrm.style.display = "none";
 				oNodoDiv.style.display = "block";
