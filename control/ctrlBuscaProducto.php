@@ -12,23 +12,26 @@ $arrEncontrados=null;
 $sJsonRet = "";
 $oErr = null;
 	/*Verifica que haya llegado el tipo y el filtro (que puede ser vacío)*/
-	if (isset($_REQUEST["cmbTipo"]) && !empty($_REQUEST["cmbTipo"]) &&
-		isset($_REQUEST["cmbFiltro"])){
+	if (isset($_REQUEST["cmbTipo"]) && isset($_REQUEST["cmbFiltro"])){
 		try{
 			//Convierte el tipo indicado a número
-			$nNum = intval(($_REQUEST["cmbTipo"]),10);
+			$nFiltroLinea = intval(($_REQUEST["cmbTipo"]),10);
+			$nFiltroTipo = intval(($_REQUEST["cmbFiltro"]),10);
 			
-			//Busca en la base de datos de acuerdo al tipo indicado
-			if ($nNum==1){
+			//Busca en la base de datos de acuerdo al tipo y al 
+			if ($nFiltroLinea==0 && $nFiltroTipo==0){
 				$oProducto = new Producto();
 				$arrEncontrados = $oProducto->buscarTodos();
-			}else if ($nNum==2){ // falta modificar para el segundo tipo - Filtro
+				
+			}else if ($nFiltroLinea>0 && $nFiltroLinea<5){ // falta modificar para el segundo tipo - Filtro
 				$oProducto = new Producto();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
+				if ($nFiltroTipo>0 && $nFiltroTipo<5){
+					$oProducto->setLinea((int)$_REQUEST["cmbTipo"]);
+					$oProducto->setTipo((int)$_REQUEST["cmbFiltro"]);
+					$arrEncontrados = $oProducto->buscarTodosFiltroDoble();
+				}else{
 					//sería deseable validar que sea número lo que se recibe
-					$oProducto->setLinea((int)$_REQUEST["cmbFiltro"]);
+					$oProducto->setLinea((int)$_REQUEST["cmbTipo"]);
 					$arrEncontrados = $oProducto->buscarTodosFiltroLinea();
 				}
 			}else
@@ -81,6 +84,7 @@ $oErr = null;
 			"data":{}
 		}';
 	}
+	
 	//Retornar JSON a quien hizo la llamada
 	header('Content-type: application/json');
 	echo $sJsonRet;

@@ -12,7 +12,7 @@ let oCmbFiltro = document.getElementById("cmbFiltro");
 		alert('Error de referencias');
 	}else{
 		//Limpia combo de filtros y sólo deja la opción por omisión
-		oCmbFiltro.innerHTML = '<option value="">Todos</option>';
+		oCmbFiltro.innerHTML = '<option value="0">Todos</option>';
 		//Dependiendo del tipo de producto, llena el combo de filtros
 		//Podrían pedirse al servidor para evitar problemas de consistencia de datos.
 		
@@ -29,12 +29,12 @@ let urlLlamada = "control/ctrlBuscaProducto.php";
 let oCmb = document.getElementById("cmbTipo");
 let oCmbFiltro = document.getElementById("cmbFiltro");
 let sQueryString = "";
-	if (oCmb===null || oCmb.selectedIndex===0 || oCmbFiltro===null){
+	if (oCmb===null || oCmbFiltro===null){
 		alert("Faltan datos para buscar");
 	}else{
+		//Se configura la llamada para pedir los datos
 		sQueryString = "?cmbTipo="+oCmb.options[oCmb.selectedIndex].value +
-						"&cmbFiltro="+
-						(oCmbFiltro.selectedIndex===0?"":oCmbFiltro.options[oCmbFiltro.selectedIndex].value);
+						"&cmbFiltro="+ oCmbFiltro.options[oCmbFiltro.selectedIndex].value;
 		fetch(urlLlamada+sQueryString)
 		.then( (response) => {return response.json();})
 		.then( (datosConvertidos) => {

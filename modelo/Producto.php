@@ -205,7 +205,7 @@ class Producto
 
       //En este ejemplo, el filtro es por linea
       if ($this->nLineas <= 0)
-         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos de Linea");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
@@ -248,7 +248,7 @@ class Producto
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
       if ($this->nTipo <= 0)
-         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos de tipo");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
@@ -291,7 +291,7 @@ class Producto
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
       if ($this->nLineas <= 0 &&  $this->nTipo <= 0)
-         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos de ambos filtros");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
@@ -302,7 +302,7 @@ class Producto
              ORDER BY t1.sNombre;
          ";
    
-            $arrParams = array(":lin" => $this->nLin, ":tip" => $this->nTipo);
+            $arrParams = array(":lin" => $this->nLineas, ":tip" => $this->nTipo);
             $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
             $oAccesoDatos->desconectar();
             if ($arrRS) {

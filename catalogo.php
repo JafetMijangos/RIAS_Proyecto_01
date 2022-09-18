@@ -23,16 +23,15 @@ $sStyle = "none";
 					<form id="frmBuscarProd">
 						<label for="cmbTipo">Linea de Producto: </label>
 						<select id="cmbTipo" required>
-							<option value="">Selecciona</option>
-							<option value="1">Todos</option>
-							<option value="2">Pasteles</option>
-							<option value="3">Galletas</option>
-							<option value="4">Gelatinas</option>
-							<option value="5">Panquesitos</option>
+							<option value="0">Todos</option>
+							<option value="1">Pasteles</option>
+							<option value="2">Galletas</option>
+							<option value="3">Gelatinas</option>
+							<option value="4">Panquesitos</option>
 						</select>
 						<label for="cmbFiltro"> y su Tipo: </label>
 						<select id="cmbFiltro">
-							<option value="">Todos</option>
+							<option value="0">Todos</option>
 						</select>
 						<br/>
 						<button type="submit" id="btnBuscar">Buscar</button>
