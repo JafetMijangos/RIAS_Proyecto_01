@@ -24,17 +24,17 @@ $oErr = null;
 				if (empty($_REQUEST["cmbFiltro"]))
 					$arrEncontrados = $oProducto->buscarTodos();
 				else{
-					$oProducto->setLinea($_REQUEST["cmbFiltro"]);
+					$oProducto->setLinea((int)$_REQUEST["cmbFiltro"]);
 					$arrEncontrados = $oProducto->buscarTodosFiltro();
 				}
-			}else if ($nNum==2){
+			}else if ($nNum==2){ // falta modificar para el segundo tipo - Filtro
 				$oProducto = new Semilla();
 				if (empty($_REQUEST["cmbFiltro"]))
 					$arrEncontrados = $oProducto->buscarTodos();
 				else{
 					//sería deseable validar que sea número lo que se recibe
-					$oProducto->setPresentacion((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oPlantaOrnato->buscarTodosFiltro();
+					$oProducto->setLinea((int)$_REQUEST["cmbFiltro"]);
+					$arrEncontrados = $oProducto->buscarTodosFiltro();
 				}
 			}else
 				$nErr = ErroresAplic::TIPO_PROD_INEXISTENTE;
@@ -56,14 +56,16 @@ $oErr = null;
 				"arrProds": [
 		';
 		//Recorrer arreglo para llenar objetos
-		foreach($arrEncontrados as $oPlantaOrnato){
+		foreach($arrEncontrados as $oProducto){
 			$sJsonRet = $sJsonRet.'{
-					"clave": '.$oPlantaOrnato->getClave().', 
-					"nombre":"'.$oPlantaOrnato->getNombreComun().'", 
-					"imagen":"'.$oPlantaOrnato->getImagen().'", 
-					"esDeSombra":'.($oPlantaOrnato->getEsDeSombra()?"true":"false").',
-					"otros":"'.(($oPlantaOrnato instanceOf Planta)?$oPlantaOrnato->getTamanio():$oPlantaOrnato->getDescripPresentacion()).'",
-					"precio":'.$oPlantaOrnato->getPrecio().'
+					"clave": '.$oProducto->getClaveProducto().', 
+					"nombre":"'.$oProducto->getNombre().'", 
+					"linea":"'.($oProducto->getDescripcionLinea()).'",
+					"tipo":"'.($oProducto->getDescripcionTipo()).'",
+					"descripcion":"'.$oProducto->getDescripcion().'", 
+					"sabor":"'.$oProducto->getSabor().'", 
+					"imagen":"'.$oProducto->getImg().'", 
+					"precio":'.$oProducto->getPrecio().'
 					},';
 		}
 		//Sobra una coma, eliminarla
