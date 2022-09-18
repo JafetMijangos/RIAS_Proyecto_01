@@ -2,11 +2,7 @@
 /*************************************************************
  * Usuario.php
  * Objetivo: clase que encapsula el manejo del concepto Usuario
- *			(clase abstracta creada para manejar los elementos
- *           comunes que existen entre empleados y clientes, es
- *			 decir, entre todos los que pueden ingresar al 
- *			 sistema con una clave y una contraseña)
- * Autor: BAOZ
+ * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("AccesoDatos.php");

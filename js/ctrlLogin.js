@@ -1,7 +1,7 @@
 /*
 Archivo:  ctrlLogin.js
 Objetivo: código de JavaScript para realizar login mediante llamada parcial a PHP
-Autor:    BAOZ
+Autor:    Pasteleria
 */
 
 //Si pasa por aquí es que se encuentra en index.php y no hay sesión todavía

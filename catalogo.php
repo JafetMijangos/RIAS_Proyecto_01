@@ -21,15 +21,18 @@ $sStyle = "none";
 						<h3>Cat&aacute;logo de Productos</h3>
 					</header>
 					<form id="frmBuscarProd">
-						<label for="cmbTipo">Tipo de Producto</label>
+						<label for="cmbTipo">Linea de Producto</label>
 						<select id="cmbTipo" required>
-							<option value="">Seleccione</option>
-							<option value="1">Planta en maceta</option>
-							<option value="2">Semillas</option>
+							<option value="">Selecciona</option>
+							<option value="1">Todos</option>
+							<option value="2">Pasteles</option>
+							<option value="3">Galletas</option>
+							<option value="4">Gelatinas</option>
+							<option value="5">Panquesitos</option>
 						</select>
-						<label for="cmbFiltro">Filtro (tama&ntilde;o/presentaci&oacute;n)</label>
+						<label for="cmbFiltro">Filtro (Tipo)</label>
 						<select id="cmbFiltro">
-							<option value="">Todos</option>
+							<option value="1">Todos</option>
 						</select>
 						<br/>
 						<button type="submit" id="btnBuscar">Buscar</button>
@@ -40,10 +43,12 @@ $sStyle = "none";
 							<thead>
 								<tr>
 									<th>Clave</th>
-									<th>Nombre Com&uacute;n</th>
+									<th>Nombre</th>
+									<th>Linea</th>
+									<th>Tipo</th>
+									<th>Descripción</th>
+									<th>Sabor</th>
 									<th>Imagen</th>
-									<th>Es de sombra</th>
-									<th>Tama&ntilde;o/Presentaci&oacute;n</th>
 									<th id="tdPrecio" style="display:<?php echo $sStyle;?>">Precio</th>
 								</tr>
 							</thead>

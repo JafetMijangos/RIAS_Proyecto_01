@@ -1,7 +1,7 @@
 <?php
 /*Archivo:  ctrlLogin.php
 Objetivo: control para iniciar sesión
-Autor:    BAOZ
+Autor:    Pasteleria
 */
 include_once("../modelo/Empleado.php");
 include_once("../modelo/Cliente.php");

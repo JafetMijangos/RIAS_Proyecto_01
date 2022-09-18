@@ -3,7 +3,7 @@
 /* AccesoDatos.php
  * Objetivo: clase que encapsula el acceso a la base de datos (caso PDO)
  *			 Requiere habilitar pdo_pgsql y pdo_mysql en php.ini
- * Autor: BAOZ
+ * Autor: Pasteleria
  *************************************************************/
  error_reporting(E_ALL);
  class AccesoDatos{

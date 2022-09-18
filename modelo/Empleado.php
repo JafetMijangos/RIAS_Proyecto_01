@@ -3,7 +3,7 @@
  * Empleado.php
  * Objetivo: clase que encapsula el manejo del concepto Empleado,
  * 			es decir, trabajadores de la empresa
- * Autor: BAOZ
+ * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("Usuario.php");

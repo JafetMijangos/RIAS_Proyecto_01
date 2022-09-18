@@ -1,9 +1,9 @@
 <?php
-/*Archivo:  ctrlBuscaPlantas.php
+/*Archivo:  ctrlBuscaProducto.php
 Objetivo: control para buscar plantas, considera filtrado
-Autor:    BAOZ
+Autor:    Pasteleria
 */
-include_once("../modelo/Semilla.php");
+include_once("../modelo/Producto.php");
 include_once("../utils/ErroresAplic.php");
 $nErr=-1;
 $nNum=0;
@@ -20,21 +20,16 @@ $oErr = null;
 			
 			//Busca en la base de datos de acuerdo al tipo indicado
 			if ($nNum==1){
-				$oProducto = new Semilla();
-				if (empty($_REQUEST["cmbFiltro"]))
-					$arrEncontrados = $oProducto->buscarTodos();
-				else{
-					$oProducto->setLinea((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
-				}
+				$oProducto = new Producto();
+				$arrEncontrados = $oProducto->buscarTodos();
 			}else if ($nNum==2){ // falta modificar para el segundo tipo - Filtro
-				$oProducto = new Semilla();
+				$oProducto = new Producto();
 				if (empty($_REQUEST["cmbFiltro"]))
 					$arrEncontrados = $oProducto->buscarTodos();
 				else{
 					//sería deseable validar que sea número lo que se recibe
 					$oProducto->setLinea((int)$_REQUEST["cmbFiltro"]);
-					$arrEncontrados = $oProducto->buscarTodosFiltro();
+					$arrEncontrados = $oProducto->buscarTodosFiltroLinea();
 				}
 			}else
 				$nErr = ErroresAplic::TIPO_PROD_INEXISTENTE;
@@ -60,8 +55,8 @@ $oErr = null;
 			$sJsonRet = $sJsonRet.'{
 					"clave": '.$oProducto->getClaveProducto().', 
 					"nombre":"'.$oProducto->getNombre().'", 
-					"linea":"'.($oProducto->getDescripcionLinea()).'",
-					"tipo":"'.($oProducto->getDescripcionTipo()).'",
+					"linea":"'.$oProducto->getLinea().'",
+					"tipo":"'.$oProducto->getTipo().'",
 					"descripcion":"'.$oProducto->getDescripcion().'", 
 					"sabor":"'.$oProducto->getSabor().'", 
 					"imagen":"'.$oProducto->getImg().'", 

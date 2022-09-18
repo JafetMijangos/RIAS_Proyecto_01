@@ -1,7 +1,7 @@
 <?php
 /*Archivo:  ctrlLogout.php
 Objetivo: control para terminar sesión
-Autor:    BAOZ
+Autor:    Pasteleria
 */
 session_start(); //Le avisa al servidor que va a utilizar sesiones
 	session_destroy();

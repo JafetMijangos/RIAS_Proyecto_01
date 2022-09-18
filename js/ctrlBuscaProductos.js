@@ -1,8 +1,8 @@
 /*
 Archivo:  ctrlBuscaProductos.js
 Objetivo: código de JavaScript para realizar llamada parcial a PHP para consultar 
-		  productos (plantas de ornato) incluyendo un filtro
-Autor:    BAOZ
+		  productos 
+Autor:    Pasteleria
 */
 
 function llenaFiltros(){
@@ -17,15 +17,15 @@ let oCmbFiltro = document.getElementById("cmbFiltro");
 		//Podrían pedirse al servidor para evitar problemas de consistencia de datos.
 		
 		oCmbFiltro.innerHTML = oCmbFiltro.innerHTML+
-						'<option value="1">Normail</option>'+
-						'<option value="2">Dietético</option>'+
-						'<option value="3">Diabético</option>'+
-						'<option value="4">Vegano</option>';
+						'<option value="2">Normal</option>'+
+						'<option value="3">Dietético</option>'+
+						'<option value="4">Diabético</option>'+
+						'<option value="5">Vegano</option>';
 	}
 }
 
 function llamaBusqueda(){
-let urlLlamada = "control/ctrlBuscaPlantas.php";
+let urlLlamada = "control/ctrlBuscaProducto.php";
 let oCmb = document.getElementById("cmbTipo");
 let oCmbFiltro = document.getElementById("cmbFiltro");
 let sQueryString = "";

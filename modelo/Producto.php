@@ -1,16 +1,14 @@
 <?php
 
 /*************************************************************
- * PlantaOrnato.php
- * Objetivo: clase que encapsula el manejo del concepto PlantaOrnato
- *			(clase abstracta creada para manejar los elementos
- *           comunes que existen entre semillas y plantas -matitas- )
- * Autor: BAOZ
+ * Producto.php
+ * Objetivo: clase que encapsula el manejo del concepto Producto
+ * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("AccesoDatos.php");
 
-class Semilla
+class Producto
 {
 
    protected int $nClaveProducto = 0;
@@ -179,7 +177,7 @@ class Semilla
          if ($arrRS) {
             $arrRet = array();
             foreach ($arrRS as $arrLinea) {
-               $oProducto = new Semilla();
+               $oProducto = new Producto();
                $oProducto->setClaveProducto($arrLinea[0]);
                $oProducto->setNombre($arrLinea[1]);
                $oProducto->setLinea($arrLinea[2]);
@@ -197,10 +195,10 @@ class Semilla
 
    public function buscar(): bool
    {
-      throw new Exception("Semilla->buscar: no implementada"); //Cambiar nombre luego
+      throw new Exception("Productos->buscar: no implementada"); //Cambiar nombre luego
    }
 
-   public function buscarTodosFiltro(): array
+   public function buscarTodosFiltroLinea(): array
    {
       $oAccesoDatos = new AccesoDatos();
       $sQuery = "";
@@ -210,7 +208,7 @@ class Semilla
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
       if ($this->nLin <= 0)
-         throw new Exception("Semilla->buscarTodosFiltro: faltan datos");//cambiar
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
@@ -226,7 +224,94 @@ class Semilla
             if ($arrRS) {
                $arrRet = array();
                foreach ($arrRS as $arrLinea) {
-                  $oProducto = new Semilla();
+                  $oProducto = new Producto();
+                  $oProducto->setClaveProducto($arrLinea[0]);
+                  $oProducto->setNombre($arrLinea[1]);
+                  $oProducto->setLinea($arrLinea[2]);
+                  $oProducto->setTipo($arrLinea[3]);
+                  $oProducto->setDescripcion($arrLinea[4]);
+                  $oProducto->setSabor($arrLinea[5]);
+                  $oProducto->setImg($arrLinea[6]);
+                  $oProducto->setPrecio($arrLinea[7]);
+                  $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
+               }
+            }
+         }
+      }
+      return $arrRet;
+   }
+
+   public function buscarTodosFiltroTipo(): array
+   {
+      $oAccesoDatos = new AccesoDatos();
+      $sQuery = "";
+      $arrRS = null;
+      $arrLinea = null;
+      $oProducto = null;
+      $arrRet = array();
+      //En este ejemplo, el filtro es por presentación
+      if ($this->nTip <= 0)
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
+      else {
+         if ($oAccesoDatos->conectar()) {
+            $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
+            t1.sSabor, t1.sImagen, t1.sPrecio 
+             FROM productos t1
+             WHERE t1.nTipo = :lin
+             ORDER BY t1.sNombre;
+         ";
+   
+            $arrParams = array(":tip" => $this->nTip);
+            $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+            $oAccesoDatos->desconectar();
+            if ($arrRS) {
+               $arrRet = array();
+               foreach ($arrRS as $arrLinea) {
+                  $oProducto = new Producto();
+                  $oProducto->setClaveProducto($arrLinea[0]);
+                  $oProducto->setNombre($arrLinea[1]);
+                  $oProducto->setLinea($arrLinea[2]);
+                  $oProducto->setTipo($arrLinea[3]);
+                  $oProducto->setDescripcion($arrLinea[4]);
+                  $oProducto->setSabor($arrLinea[5]);
+                  $oProducto->setImg($arrLinea[6]);
+                  $oProducto->setPrecio($arrLinea[7]);
+                  $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
+               }
+            }
+         }
+      }
+      return $arrRet;
+   }
+
+   public function buscarTodosFiltroDoble(): array
+   {
+      $oAccesoDatos = new AccesoDatos();
+      $sQuery = "";
+      $arrRS = null;
+      $arrLinea = null;
+      $oProducto = null;
+      $arrRet = array();
+      //En este ejemplo, el filtro es por presentación
+      if ($this->nLin <= 0 &&  $this->nTip <= 0)
+         throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
+      else {
+         if ($oAccesoDatos->conectar()) {
+            $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
+            t1.sSabor, t1.sImagen, t1.sPrecio 
+             FROM productos t1
+             WHERE t1.nLinea = :lin
+             AND t1.nTipo = :tip
+             ORDER BY t1.sNombre;
+         ";
+   
+            $arrParams = array(":lin" => $this->nLin, ":tip" => $this->nTip);
+            $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
+            $oAccesoDatos->desconectar();
+            if ($arrRS) {
+               $arrRet = array();
+               foreach ($arrRS as $arrLinea) {
+                  $oProducto = new Producto();
                   $oProducto->setClaveProducto($arrLinea[0]);
                   $oProducto->setNombre($arrLinea[1]);
                   $oProducto->setLinea($arrLinea[2]);
@@ -246,16 +331,16 @@ class Semilla
 
    public function insertar(): int
    {
-      throw new Exception("Semilla->insertar: no implementada");
+      throw new Exception("Producto->insertar: no implementada");
    }
 
    public function modificar(): int
    {
-      throw new Exception("Semilla->modificar: no implementada");
+      throw new Exception("Producto->modificar: no implementada");
    }
 
    public function eliminar(): int
    {
-      throw new Exception("Semilla->eliminar: no implementada");
+      throw new Exception("Producto->eliminar: no implementada");
    }
 }

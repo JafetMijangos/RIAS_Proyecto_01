@@ -2,7 +2,7 @@
 /*************************************************************
  * Cliente.php
  * Objetivo: clase que encapsula el manejo del concepto Cliente
- * Autor: BAOZ
+ * Autor: Pasteleria
  *************************************************************/
 error_reporting(E_ALL);
 include_once("Usuario.php");
