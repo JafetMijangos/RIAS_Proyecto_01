@@ -151,8 +151,12 @@ class Producto
       return self::$arrTipos;
    }
 
-   //Funciones específicas NO OLVIDES CAMBIAR LOS NOMBRE!!!!!!
+   // ------------------ Funciones de consulta ------------------------
 
+   public function buscar(): bool // Busqueda especifica
+   {
+      throw new Exception("Productos->buscar: no implementada"); 
+   }
 
    public function buscarTodos(): array
    {
@@ -160,7 +164,7 @@ class Producto
       $sQuery = "";
       $arrRS = null;
       $arrLinea = null;
-      $oProducto = null; //Cambiar nombre
+      $oProducto = null;
       $arrRet = array();
       if ($oAccesoDatos->conectar()) {
          $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
@@ -190,11 +194,6 @@ class Producto
       return $arrRet;
    }
 
-   public function buscar(): bool
-   {
-      throw new Exception("Productos->buscar: no implementada"); //Cambiar nombre luego
-   }
-
    public function buscarTodosFiltroLinea(): array
    {
       $oAccesoDatos = new AccesoDatos();
@@ -203,7 +202,8 @@ class Producto
       $arrLinea = null;
       $oProducto = null;
       $arrRet = array();
-      //En este ejemplo, el filtro es por presentación
+
+      //En este ejemplo, el filtro es por linea
       if ($this->nLineas <= 0)
          throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
       else {
@@ -325,6 +325,7 @@ class Producto
       return $arrRet;
    }
 
+   // Otras acciones por agregar
 
    public function insertar(): int
    {
