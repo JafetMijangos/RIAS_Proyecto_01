@@ -11,17 +11,14 @@ include_once("AccesoDatos.php");
 class Producto
 {
 
-   protected int $nClaveProducto = 0;
-   protected string $sNombre = "";
-   protected int $nLinea = 0;
-   protected int $ntipo = 0;
-   protected string $sDescripcion = "";
-   protected string $sSabor = "";
-   protected string $sImagen = "";
-   protected float $sPrecio = 0;
-
-   private int $nLin = 0;
-   private int $nTip = 0;
+   private int $nClaveProducto = 0;
+   private string $sNombre = "";
+   private int $nLineas = 0;
+   private int $nTipo = 0;
+   private string $sDescripcion = "";
+   private string $sSabor = "";
+   private string $sImagen = "";
+   private float $sPrecio = 0;
 
    //Constantes para los filtros por linea
    public const PASTEL = 1;
@@ -30,9 +27,10 @@ class Producto
    public const PANQUESITO = 4;
    //Constantes para los filtros tipo
    public const NORMAL = 1;
-   public const DIETETICO = 1;
+   public const DIETETICO = 2;
    public const DIABETICO = 3;
    public const VEGANO = 4;
+   
    //No existe en el modelo, pero facilita el manejo de las restricciones
    private static $arrLineas = array(
       self::PASTEL => "Pastel",
@@ -43,8 +41,8 @@ class Producto
 
    private static $arrTipos = array(
       self::NORMAL => "Normal",
-      self::DIETETICO => "Dietetico",
-      self::DIABETICO => "Diabetico",
+      self::DIETETICO => "Dietético",
+      self::DIABETICO => "Diabético",
       self::VEGANO => "Vegano"
    );
 
@@ -68,11 +66,11 @@ class Producto
 
    public function getLinea(): int
    {
-      return $this->nLinea;
+      return $this->nLineas;
    }
    public function setLinea(int $valor)
    {
-      $this->nLinea = $valor;
+      $this->nLineas = $valor;
    }
 
    public function getTipo(): int
@@ -123,10 +121,9 @@ class Producto
    {
       $sRet = "";
       if (
-         $this->nLin > 0 &&
-         array_key_exists($this->nLin . "", self::$arrLineas)
-      )
-         $sRet = self::$arrLineas[$this->nLin . ""];
+         $this->nLineas > 0 &&
+         array_key_exists($this->nLineas . "", self::$arrLineas))
+         $sRet = self::$arrLineas[$this->nLineas . ""];
       return $sRet;
    }
 
@@ -141,10 +138,10 @@ class Producto
    {
       $sRet = "";
       if (
-         $this->nTip > 0 &&
-         array_key_exists($this->nTip . "", self::$arrTipos)
+         $this->nTipo > 0 &&
+         array_key_exists($this->nTipo . "", self::$arrTipos)
       )
-         $sRet = self::$arrTipos[$this->nTip . ""];
+         $sRet = self::$arrTipos[$this->nTipo . ""];
       return $sRet;
    }
 
@@ -207,7 +204,7 @@ class Producto
       $oProducto = null;
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
-      if ($this->nLin <= 0)
+      if ($this->nLineas <= 0)
          throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
@@ -218,7 +215,7 @@ class Producto
              ORDER BY t1.sNombre;
          ";
    
-            $arrParams = array(":lin" => $this->nLin);
+            $arrParams = array(":lin" => $this->nLineas);
             $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
             $oAccesoDatos->desconectar();
             if ($arrRS) {
@@ -250,7 +247,7 @@ class Producto
       $oProducto = null;
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
-      if ($this->nTip <= 0)
+      if ($this->nTipo <= 0)
          throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
@@ -261,7 +258,7 @@ class Producto
              ORDER BY t1.sNombre;
          ";
    
-            $arrParams = array(":tip" => $this->nTip);
+            $arrParams = array(":tip" => $this->nTipo);
             $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
             $oAccesoDatos->desconectar();
             if ($arrRS) {
@@ -293,7 +290,7 @@ class Producto
       $oProducto = null;
       $arrRet = array();
       //En este ejemplo, el filtro es por presentación
-      if ($this->nLin <= 0 &&  $this->nTip <= 0)
+      if ($this->nLineas <= 0 &&  $this->nTipo <= 0)
          throw new Exception("Productos->buscarTodosFiltro: faltan datos");//cambiar
       else {
          if ($oAccesoDatos->conectar()) {
@@ -305,7 +302,7 @@ class Producto
              ORDER BY t1.sNombre;
          ";
    
-            $arrParams = array(":lin" => $this->nLin, ":tip" => $this->nTip);
+            $arrParams = array(":lin" => $this->nLin, ":tip" => $this->nTipo);
             $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
             $oAccesoDatos->desconectar();
             if ($arrRS) {

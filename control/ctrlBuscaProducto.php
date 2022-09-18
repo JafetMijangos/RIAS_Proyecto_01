@@ -55,8 +55,8 @@ $oErr = null;
 			$sJsonRet = $sJsonRet.'{
 					"clave": '.$oProducto->getClaveProducto().', 
 					"nombre":"'.$oProducto->getNombre().'", 
-					"linea":"'.$oProducto->getLinea().'",
-					"tipo":"'.$oProducto->getTipo().'",
+					"linea":"'.$oProducto->getDescripcionLinea().'",
+					"tipo":"'.$oProducto->getDescripcionTipo().'",
 					"descripcion":"'.$oProducto->getDescripcion().'", 
 					"sabor":"'.$oProducto->getSabor().'", 
 					"imagen":"'.$oProducto->getImg().'", 

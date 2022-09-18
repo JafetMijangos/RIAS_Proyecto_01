@@ -17,10 +17,10 @@ let oCmbFiltro = document.getElementById("cmbFiltro");
 		//Podrían pedirse al servidor para evitar problemas de consistencia de datos.
 		
 		oCmbFiltro.innerHTML = oCmbFiltro.innerHTML+
-						'<option value="2">Normal</option>'+
-						'<option value="3">Dietético</option>'+
-						'<option value="4">Diabético</option>'+
-						'<option value="5">Vegano</option>';
+						'<option value="1">Normal</option>'+
+						'<option value="2">Dietético</option>'+
+						'<option value="3">Diabético</option>'+
+						'<option value="4">Vegano</option>';
 	}
 }
 
