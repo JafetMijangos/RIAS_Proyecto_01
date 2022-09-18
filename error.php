@@ -13,7 +13,7 @@ $oErr = new ErroresAplic();
 	if (isset($_REQUEST["nError"]) && !empty($_REQUEST["nError"]))
 		$nErr = (int)$_REQUEST["nError"];
 	$oErr->setError($nErr);
-include_once("cabecera.html");
+include_once("header.html");
 include_once("menu.php");
 ?>
 		<main id="main-content">
@@ -28,7 +28,5 @@ include_once("menu.php");
 			</section>
 		</main>
 <?php
-include_once("lateral1.html");
-include_once("lateral2.html");
-include_once("pie.html");
+include_once("footer.html");
 ?>

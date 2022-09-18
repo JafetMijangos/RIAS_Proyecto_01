@@ -55,7 +55,7 @@ let sError = "";
 				document.getElementById("mnuInicio").href = "inicio.php";
 				document.getElementById("mnuSalir").className = "menu";
 				
-				if (oDatos.data.sDescTipo === "Cajero"){
+				/*if (oDatos.data.sDescTipo === "Cajero"){
 					document.getElementById("mnuCltes").className = "menu";
 				}else if (oDatos.data.sDescTipo === "Almacenista"){
 					document.getElementById("mnuEnvios").className = "menu";
@@ -64,7 +64,7 @@ let sError = "";
 					document.getElementById("mnuPlan").className = "menu";
 					document.getElementById("mnuReg").className = "menu";
 					document.getElementById("mnuUsos").className = "menu";
-				}
+				}*/
 				
 				//Ocultar formulario y mostrar bienvenida*/
 				oNodoFrm.style.display = "none";

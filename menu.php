@@ -1,5 +1,6 @@
-			<!-- menu.php -->
-			<?php
+<!-- Navbar Start -->
+	<!-- menu.php -->
+    <?php
 				$sClsMnPacientes="menu_inhab";
 				$sClsMnCajero="menu_inhab";
 				$sClsMnAlmacenista="menu_inhab";
@@ -20,15 +21,24 @@
 											   break;
 					}
 				}
-			?>
-			<nav id="main-nav">
-				<a href="<?php echo ($bFirmado?"inicio.php":"index.php");?>" class="menu" id="mnuInicio">Inicio</a>			
-				<a href="catalogo.php" class="menu" id="mnuCatalogo">Cat&aacute;logo de Productos</a>
-				<a href="clientes.php" class="<?php echo $sClsMnCajero;?>" id="mnuCltes">Registrar Cliente</a>
-				<a href="envios.php" class="<?php echo $sClsMnAlmacenista;?>" id="mnuEnvios">Enviar Pedido</a>
-				<a href="empleados.php" class="<?php echo $sClsMnAdmor;?>" id="menuEmp">Gestionar empleados</a>
-				<a href="plantas.php" class="<?php echo $sClsMnAdmor;?>" id="mnuPlan">Gestionar plantas</a>
-				<a href="regimenes.php" class="<?php echo $sClsMnAdmor;?>" id="mnuReg">Gestionar reg&iacute;menes</a>
-				<a href="usos.php" class="<?php echo $sClsMnAdmor;?>" id="mnuUsos">Gestionar usos</a>
-				<a href="control/ctrlLogout.php" class="<?php echo $sClsMnSalir;?>" id="mnuSalir">Salir</a>		
-			</nav>	
+	?>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-primary me-3"></i>CakeZone</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto mx-lg-auto py-0">
+            <a href="<?php echo ($bFirmado?"inicio.php":"index.php");?>" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>			
+				<a href="catalogo.php" class="menu nav-item nav-link" id="mnuCatalogo">Cat&aacute;logo de Productos</a>
+				<a href="clienteReg.php" class="menu nav-item nav-link" id="mnuReg">Registrarse</a>
+				<a href="productos.php" class="<?php echo $sClsMnAdmor;?> nav-item nav-link" id="mnuGesP">Gestionar Productos</a>
+				<a href="comprar.php" class="<?php echo $sClsMnCajero;?> nav-item nav-link" id="mnuCompra">Comprar</a>
+				<a href="control/ctrlLogout.php" class="<?php echo $sClsMnSalir;?> nav-item nav-link" id="mnuSalir">Salir</a>					
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->

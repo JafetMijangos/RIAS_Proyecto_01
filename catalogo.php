@@ -1,47 +1,53 @@
 <?php
-/*
-Archivo:  catalogo.php
-Objetivo: página para consultar el catálogo (en construcción) 
-Autor:    BAOZ
-*/
+
 include_once("modelo/Empleado.php");
 include_once("modelo/Cliente.php");
 session_start();
-include_once("cabecera.html");
+include_once("header.html");
 include_once("menu.php");
+
 $sStyle = "none";
 	if (isset($_SESSION["sTipoFirmado"])){
 		$sStyle = "block";
 	}
-?>		
-			<main id="main-content">
+?>
+    <!--Tabla Proferora-->
+    <main id="main-content">
 				<script src="js/ctrlBuscaProductos.js" async="true"></script>
 				<section>
 					<header>
-						<h3>Cat&aacute;logo de Productos</h3>
+                    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+                       <h2 class="text-primary font-secondary">Menu</h2>
+                        <h1 class="display-4 text-uppercase">Cat&aacute;logo de Productos</h1>
+                    </div>
 					</header>
+                    <div class="container-fluid about py-5">
+                    <div class="container">
 					<form id="frmBuscarProd">
-						<label for="cmbTipo">Linea de Producto: </label>
-						<select id="cmbTipo" required>
+						<label class="text-primary text-uppercase mb-4" for="cmbTipo">Tipo</label>
+						<select class="select" id="cmbTipo" required>
 							<option value="0">Todos</option>
 							<option value="1">Pasteles</option>
 							<option value="2">Galletas</option>
-							<option value="3">Gelatinas</option>
-							<option value="4">Panquesitos</option>
+                            <option value="3">Gelatinas</option>
+                            <option value="4">Panquesitos</option>
 						</select>
-						<label for="cmbFiltro"> y su Tipo: </label>
-						<select id="cmbFiltro">
+						<label class="text-primary text-uppercase mb-4" for="cmbFiltro">Filtro</label>
+						<select class="select"s id="cmbFiltro">
 							<option value="0">Todos</option>
 						</select>
 						<br/>
-						<button type="submit" id="btnBuscar">Buscar</button>
+						<br/>
+						<button class="btn btn-primary border-inner py-3" type="submit" id="btnBuscar">Buscar</button>
 					</form>
+                    </div>
+                    </div>
 					<div id="resBuscarProd" style="display:none">
 						<h4>Productos encontrados</h4>
 						<table border="1" id="tblProds">
 							<thead>
 								<tr>
-									<th>Clave</th>
+								    <th>Clave</th>
 									<th>Nombre</th>
 									<th>Linea</th>
 									<th>Tipo</th>
@@ -57,8 +63,8 @@ $sStyle = "none";
 					</div>
 				</section>
 			</main>
+
+
 <?php
-include_once("lateral1.html");
-include_once("lateral2.html");
-include_once("pie.html");
-?>		
+include_once("footer.html");
+?>	
