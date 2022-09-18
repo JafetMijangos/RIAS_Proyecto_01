@@ -257,7 +257,7 @@ class Producto
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
             t1.sSabor, t1.sImagen, t1.sPrecio 
              FROM productos t1
-             WHERE t1.nTipo = :lin
+             WHERE t1.nTipo = :tip
              ORDER BY t1.sNombre;
          ";
    
