@@ -28,7 +28,7 @@ $sNombre="";
 				$oUsu->setCorreo($_REQUEST["txtCorreoUsu"]);
 				$oUsu->setContrasenia($_REQUEST["txtPwd"]);
 				if ($oUsu->buscarCvePwd()){
-					$_SESSION["sNomFirmado"] = $oUsu->getNombreRazSoc();
+					$_SESSION["sNomFirmado"] = $oUsu->getNombre();
 					$_SESSION["sDescFirmado"] = "Cliente";
 					$_SESSION["sTipoFirmado"] = "e";
 				}else //no es cliente ni empleado
