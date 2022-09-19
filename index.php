@@ -33,10 +33,10 @@ include_once("hero.html");
                     <br/>
                     <input class="btn btn-primary border-inner py-3 px-5" type="submit" value="Entrar" id="btnEnviar"/>
                 </form>
-                
+                <br/><br/> <br/><br/><br/>
                 <div id="divBienvenido" style="display:none">
-                    <h4>Hola <span id="paraNombre"></span></h4>
-                    <h5>Est&aacute;s firmado como <span id="paraTipo"></span></h5>
+                    <h1 class="text-primary font-secondary">Hola <span id="paraNombre"></span></h1>
+                    <h1 class="text-primary font-secondary">Est&aacute;s firmado como <span id="paraTipo"></span></h1>
                 </div>
                 </div>
             </section>
