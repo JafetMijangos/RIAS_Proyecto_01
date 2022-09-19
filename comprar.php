@@ -1,10 +1,11 @@
 <?php
 include_once("modelo/Cliente.php");
+include_once("modelo/Empleado.php");
 include_once("utils/ErroresAplic.php");
 session_start();
 $nErr = -1;
 	if (isset($_SESSION["sTipoFirmado"])){
-		if ($_SESSION["sTipoFirmado"]==Empleado::CAJERO){
+		if ($_SESSION["sTipoFirmado"]=="e"){
 			include_once("header.html");
 			include_once("menu.php");
 		}else{

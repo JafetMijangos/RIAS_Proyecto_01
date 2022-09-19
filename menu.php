@@ -1,24 +1,22 @@
 <!-- Navbar Start -->
 	<!-- menu.php -->
     <?php
-				$sClsMnPacientes="menu_inhab";
-				$sClsMnCajero="menu_inhab";
-				$sClsMnAlmacenista="menu_inhab";
 				$sClsMnAdmor="menu_inhab";
+				$sClsMnCliente="menu_inhab";
 				$sClsMnSalir="menu_inhab";
+				$OculREg="menu";
 				$bFirmado = false;
 				$oFirmado = null;
 				
 				$bFirmado = isset($_SESSION["sTipoFirmado"]);
 				if ($bFirmado){
 					$sClsMnSalir="menu";
-					switch ($_SESSION["sTipoFirmado"]){
-						case Empleado::CAJERO: $sClsMnCajero="menu";
-											   break;
-						case Empleado::ALMACENISTA: $sClsMnAlmacenista="menu";
-											   break;
-						case Empleado::ADMINISTRADOR: $sClsMnAdmor="menu";
-											   break;
+					$OculREg="menu_inhab";
+					if ($_SESSION["sTipoFirmado"]==Empleado::ADMINISTRADOR){
+						$sClsMnAdmor="menu";
+					}
+					else{
+						 $sClsMnCliente="menu";				   	   
 					}
 				}
 	?>
@@ -34,9 +32,9 @@
             <div class="navbar-nav ms-auto mx-lg-auto py-0">
             <a href="<?php echo ($bFirmado?"inicio.php":"index.php");?>" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>			
 				<a href="catalogo.php" class="menu nav-item nav-link" id="mnuCatalogo">Cat&aacute;logo de Productos</a>
-				<a href="clienteReg.php" class="menu nav-item nav-link" id="mnuReg">Registrarse</a>
+				<a href="clienteReg.php" class="<?php echo $OculREg;?> menu nav-item nav-link" id="mnuReg">Registrarse</a>
 				<a href="productos.php" class="<?php echo $sClsMnAdmor;?> nav-item nav-link" id="mnuGesP">Gestionar Productos</a>
-				<a href="comprar.php" class="<?php echo $sClsMnCajero;?> nav-item nav-link" id="mnuCompra">Comprar</a>
+				<a href="comprar.php" class="<?php echo $sClsMnCliente;?>  nav-item nav-link" id="mnuCompra">Comprar</a>
 				<a href="control/ctrlLogout.php" class="<?php echo $sClsMnSalir;?> nav-item nav-link" id="mnuSalir">Salir</a>					
             </div>
         </div>

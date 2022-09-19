@@ -47,7 +47,7 @@ $sStyle = "none";
 						<table border="1" id="tblProds">
 							<thead>
 								<tr>
-								    <th>Clave</th>
+								<th>Clave</th>
 									<th>Nombre</th>
 									<th>Linea</th>
 									<th>Tipo</th>

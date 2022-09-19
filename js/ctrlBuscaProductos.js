@@ -89,7 +89,7 @@ let oFmt = new Intl.NumberFormat('es-MX', {
 					oCeldaDescripcion.innerHTML = elem.descripcion;
 					oCeldaSabor.innerHTML = elem.sabor;
 					oCeldaImagen.appendChild(document.createElement("img"));
-					oCeldaImagen.firstChild.src = "imgs/"+elem.imagen;
+					oCeldaImagen.firstChild.src = "img/"+elem.imagen;
 					oCeldaImagen.firstChild.alt = "imagen "+elem.nombre;
 					
 					// Si esta registrado

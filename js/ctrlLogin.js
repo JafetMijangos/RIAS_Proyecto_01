@@ -53,18 +53,15 @@ let sError = "";
 				
 				//Modificar menús
 				document.getElementById("mnuInicio").href = "inicio.php";
-				document.getElementById("mnuSalir").className = "menu";
+				document.getElementById("mnuSalir").className = "menu nav-item nav-link";
 				
-				/*if (oDatos.data.sDescTipo === "Cajero"){
-					document.getElementById("mnuCltes").className = "menu";
-				}else if (oDatos.data.sDescTipo === "Almacenista"){
-					document.getElementById("mnuEnvios").className = "menu";
-				}else if (oDatos.data.sDescTipo === "Administrador"){
-					document.getElementById("menuEmp").className = "menu";
-					document.getElementById("mnuPlan").className = "menu";
-					document.getElementById("mnuReg").className = "menu";
-					document.getElementById("mnuUsos").className = "menu";
-				}*/
+				if (oDatos.data.sDescTipo === "Administrador"){
+					document.getElementById("mnuGesP").className = "menu nav-item nav-link";
+					document.getElementById("mnuReg").className = "menu_inhab";
+				}else if(oDatos.data.sDescTipo === "Cliente"){
+					document.getElementById("mnuReg").className = "menu_inhab";
+					document.getElementById("mnuCompra").className = "menu nav-item nav-link";
+				}
 				
 				//Ocultar formulario y mostrar bienvenida*/
 				oNodoFrm.style.display = "none";

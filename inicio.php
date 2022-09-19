@@ -8,7 +8,7 @@ include_once("modelo/Empleado.php");
 include_once("modelo/Cliente.php");
 session_start();
 	if (isset($_SESSION["sTipoFirmado"])){
-		include_once("cabecera.html");
+		include_once("header.html");
 		include_once("menu.php");
 	}else{
 		header("Location: error.php?nError=".ErroresAplic::NO_FIRMADO);
@@ -18,15 +18,16 @@ session_start();
 			<main id="main-content">
 				<section>
 					<header>
-						<h3>Bienvenido <?php echo $_SESSION["sNomFirmado"]; ?></h3>
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+						    <h2 class="text-primary font-secondary">Bienvenido <?php echo $_SESSION["sNomFirmado"]; ?></h2>
+						</div>
 					</header>
-					<h5>Est&aacute;s firmado como 
-					<?php echo $_SESSION["sDescFirmado"]; ?>
-					</h5>
+					<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
+					    <h1 class="display-4 text-uppercase">Est&aacute;s firmado como 
+					<?php echo $_SESSION["sDescFirmado"]; ?></h1>
+					</div>
 				</section>
 			</main>
 <?php
-include_once("lateral1.html");
-include_once("lateral2.html");
-include_once("pie.html");
+include_once("footer.html");
 ?>
