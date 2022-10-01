@@ -43,7 +43,7 @@ include_once("menu.php");
                                 <input class="form-control bg-light border-0 px-4" placeholder="Tel. Casa" id="telefonoCasa" style="height: 55px;" pattern="[0-9]{10}">
                             </div>
                             <div class="col-sm-12">
-                                <button class="btn btn-primary border-inner w-100 py-3" type="submit">Registrarse</button>
+                                <button id="btnRegistro" type="submit">Registrarse</button>
                             </div>
                         </div>
                     </form>

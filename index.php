@@ -31,7 +31,7 @@ include_once("hero.html");
                     <input class="ingresar" type="password" id="txtPwd" required/>
                     <br/>
                     <br/>
-                    <input class="btn btn-primary border-inner py-3 px-5" type="submit" value="Entrar" id="btnEnviar"/>
+                    <input type="submit" value="Entrar" id="btnEnviar"/>
                 </form>
                 <br/><br/> <br/><br/><br/>
                 <div id="divBienvenido" style="display:none">

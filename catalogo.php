@@ -38,7 +38,7 @@ $sStyle = "none";
 						</select>
 						<br/>
 						<br/>
-						<button class="btn btn-primary border-inner py-3" type="submit" id="btnBuscar">Buscar</button>
+						<button type="submit" id="btnBuscar">Buscar</button>
 					</form>
                     </div>
                     </div>

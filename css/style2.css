@@ -143,9 +143,17 @@ animation: 2s display forwards;
     border-color: #f48609;
     border-width: 10px;
     height: 25em;
-    width: 50em;
+    width: 50%;
     text-align: center;
     justify-content: center;
     margin: auto;
     background-color: rgb(35, 34, 34);
+}
+
+@media only screen and (max-width: 680px) {
+  
+  .forIng{
+  width:100%;
+
+  }
 }

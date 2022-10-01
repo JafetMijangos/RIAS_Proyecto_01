@@ -9,7 +9,7 @@ function llenaFiltros(){
 let oCmb = document.getElementById("cmbTipo");
 let oCmbFiltro = document.getElementById("cmbFiltro");
 	if (oCmb===null || oCmbFiltro===null){
-		alert('Error de referencias');
+		swal("Error", "Error de referencias", "warning");
 	}else{
 		//Limpia combo de filtros y sólo deja la opción por omisión
 		oCmbFiltro.innerHTML = '<option value="0">Todos</option>';
@@ -30,7 +30,7 @@ let oCmb = document.getElementById("cmbTipo");
 let oCmbFiltro = document.getElementById("cmbFiltro");
 let sQueryString = "";
 	if (oCmb===null || oCmbFiltro===null){
-		alert("Faltan datos para buscar");
+		swal("Error", "Faltan datos para buscar", "warning");
 	}else{
 		//Se configura la llamada para pedir los datos
 		sQueryString = "?cmbTipo="+oCmb.options[oCmb.selectedIndex].value +
@@ -41,7 +41,7 @@ let sQueryString = "";
 			procesaProductosEncontrados(datosConvertidos);
 		})
 		.catch( (error) => {
-			alert("Error al realizar la llamada");
+			swal("Error", "Error al realizar la llamada", "warning");
 			console.error(error);
 		});
 	}
@@ -117,7 +117,7 @@ let oFmt = new Intl.NumberFormat('es-MX', {
 		sError = "Error al procesar respuesta del servidor";
 	}
 	if (sError !== "")
-		alert(sError);
+	    swal("Error", sError, "warning");
 }
 
 function configura(){
@@ -134,7 +134,7 @@ let oCmb = document.getElementById("cmbTipo");
 		oCmb.addEventListener("change", llenaFiltros, false);
 	}
 	else{
-		alert('Error de referencias');
+		swal("Error", "Error de referencias", "warning");
 	}
 }
 
