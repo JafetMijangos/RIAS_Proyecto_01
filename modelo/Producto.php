@@ -19,6 +19,7 @@ class Producto
    private string $sSabor = "";
    private string $sImagen = "";
    private float $sPrecio = 0;
+   private bool $bActivo=false;
 
    //Constantes para los filtros por linea
    public const PASTEL = 1;
@@ -116,6 +117,14 @@ class Producto
    {
       $this->sPrecio = $valor;
    }
+
+   public function getActivo():bool{
+      return $this->bActivo;
+   }
+  public function setActivo(bool $valor){
+      $this->bActivo = $valor;
+   }
+
    //Para obtener las descripciones de la linea
    public function getDescripcionLinea(): string
    {
@@ -330,7 +339,7 @@ class Producto
       $arrRS = null;
       $arrLinea = null;
       $bRet = false;
-      if ($this->nClave < 1)
+      if ($this->nClaveProducto < 1)
          throw new Exception("Producto->buscar: faltan datos");
       else {
          if ($oAccesoDatos->conectar()) {
@@ -339,17 +348,17 @@ class Producto
                                   FROM productos t1
                         WHERE t1.nClaveProducto = :cve
                      ";
-            $arrParams = array(":cve" => $this->nClave);
+            $arrParams = array(":cve" => $this->nClaveProducto);
             $arrRS = $oAccesoDatos->ejecutarConsulta($sQuery, $arrParams);
             $oAccesoDatos->desconectar();
             if ($arrRS) {
-               $this->setNombre($arrRS[0][0]);
-               $this->setLinea($arrRS[0][1]);
-               $this->setTipo($arrRS[0][2]);
-               $this->setDescripcion($arrRS[0][3]);
-               $this->setSabor($arrRS[0][4]);
-               $this->setImg($arrRS[0][5]);
-               $this->setPrecio($arrRS[0][6]);
+               $this->setNombre($arrRS[0][1]);
+               $this->setLinea($arrRS[0][2]);
+               $this->setTipo($arrRS[0][3]);
+               $this->setDescripcion($arrRS[0][4]);
+               $this->setSabor($arrRS[0][5]);
+               $this->setImg($arrRS[0][6]);
+               $this->setPrecio($arrRS[0][7]);
                $bRet = true;
             }
          }
