@@ -5,6 +5,22 @@ $().ready(() => {
     $('#btnBuscar').button();
     $('#cmbFiltro').selectmenu();
     $('#cmbTipo').selectmenu();
+    $("#btnCrearProducto").button();
+    $("input[type='checkbox']" ).checkboxradio();
+    $("#btnGestionar").button();
+	$("#dlgEdProductos").dialog({
+		autoOpen: false,
+		show: {
+			effect: "fold", 
+			duration: 650
+		},
+		hide: {
+			effect: "fold", 
+			duration: 650
+		},
+		width:"60%",
+		modal: true
+	});
 
     //Reacción al cambio de tipo (y aspecto gráfico)
     $("#cmbTipo").selectmenu({
@@ -29,7 +45,37 @@ $().ready(() => {
     });
 
     //ESTO AUN NO LO USAMOS
-
+    $('#btnBuscar').click(function(event){
+        let sErr="";
+            event.preventDefault();
+            if ($("#cmbTipo")===null ||$("#cmbTipo").val()==="" || $("#cmbFiltro")===null)
+                sErr = "Faltan datos para buscar";
+            else{
+                $.getJSON({ 
+                    url: "control/ctrlBuscaPlantas.php",
+                    data: { 
+                        cmbTipo: $("#cmbTipo").val(),
+                        cmbFiltro: $("#cmbFiltro").val()
+                    }
+                })
+                .done( (oDatos) => {
+                    procesaProductosEncontrados(oDatos);
+                })
+                .fail(function(objResp, status, sError){
+                    sErr = sError;
+                    console.log(sError);
+                })
+                .always(function(objResp, status){
+                    console.log("Llamada externa completada con situación = "+status);
+                });
+            }
+            if (sErr !== "")
+                alert(sErr);
+        });
+        //Reacción al click del botón crear
+        $('#btnCrearPlanta').click(function(event){
+            muestraDlgEdPlantas("a", -1, $("#cmbTipo").val());
+        });
 
     //Comportamiento para control deslizante
     $("#precio").slider({

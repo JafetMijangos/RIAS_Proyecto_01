@@ -63,7 +63,8 @@ $oErr = null;
 					"descripcion":"'.$oProducto->getDescripcion().'", 
 					"sabor":"'.$oProducto->getSabor().'", 
 					"imagen":"'.$oProducto->getImg().'", 
-					"precio":'.$oProducto->getPrecio().'
+					"precio":'.$oProducto->getPrecio().',
+					"activo": ' . ($oProducto->getActivo() ? "true" : "false") . '
 					},';
 		}
 		//Sobra una coma, eliminarla
