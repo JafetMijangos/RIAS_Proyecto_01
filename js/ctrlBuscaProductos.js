@@ -79,6 +79,78 @@ $().ready(() => {
 		}
 	}
 
+	function muestraDlgEdProductos(sOpe, nClave, nTipo){
+		let sTitulo = "";
+		let sErr = "";
+		let bDisabled = false;
+			//Decidir título de diálogo y botón
+			switch(sOpe){
+				case "a": sTitulo="Crear Nuevo";
+					break;
+				case "b": sTitulo="Eliminar";
+					break;
+				case "m": sTitulo="Modificar";
+					break;
+				default: sTitulo="Error";
+			}
+			$("#dlgEdProductos").dialog("option", "title", sTitulo+" postres");
+			$("#btnGestionar").val(sTitulo);
+			//Limpiar campos de captura y colocar valores por omisión
+			$("#frmEdProductos")[0].reset();
+			$("#txtCve").val(nClave);
+			$("#txtTipo").val(nTipo);
+			$("#txtOpe").val(sOpe);
+			
+			if (sOpe==="b"){
+				bDisabled = true;
+				$("#frmEdProductos").attr("novalidate","novalidate");
+			}else{
+				bDisabled = false;
+				$("#frmEdProductos").attr("novalidate","");
+			}
+			//Cargar datos externos si ya existe la planta
+			if (sOpe === "b" || sOpe === "m"){
+				$.getJSON({ 
+					url: "control/ctrlBuscarUnProducto.php",
+					data: { 
+						txtCve: nClave
+					}
+				})
+				.done( (oDatos) => {
+					$("#txtNom").val(oDatos.data.nombre);
+					$("#cmbLinea").val(oDatos.data.linea);
+					$("#cmbLinea").selectmenu("refresh");
+					$("#cmbTipo").val(oDatos.data.tipo);
+					$("#cmbTipo").selectmenu("refresh");
+					$("#txtDescripcion").val(oDatos.data.descripcion);
+					$("#txtSabor").val(oDatos.data.sabor);
+					$("#txtPrecio").val(oDatos.data.precio);
+				})
+				.fail(function(objResp, status, sError){
+					sErr = sError;
+					console.log(sError);
+				});
+			}
+			if (sErr=== ""){
+				$("#txtNom").prop({disabled: bDisabled});
+				$("#cmbLinea").prop({disabled: bDisabled});
+				$("#cmbTipo").prop({disabled: bDisabled});
+				$("#txtDescripcion").prop({disabled: bDisabled});
+				$("#txtSabor").prop({disabled: bDisabled});
+				$("#txtPrecio").prop({disabled: bDisabled});
+				$("#txtImg").prop({disabled: bDisabled});
+				$("#dlgEdProductos").dialog( "open" );  //Debe ir antes del selectmenu por un bug de jQuery
+				$("#cmbLinea").selectmenu();
+				$("#cmbLinea").selectmenu("refresh");
+				$("#cmbTipo").selectmenu();
+				$("#cmbTipo").selectmenu("refresh");
+			}else{
+				alert("Error al editar producto");
+				$("#dlgEdProductos").dialog( "close" );
+			}
+			
+		}
+
 	//Procesa la respuesta parcial del servidor y llena la tabla de productos
 	function procesaProductosEncontrados(oDatos) {
 		let oNodoFrm = $("#frmBuscarProd");
