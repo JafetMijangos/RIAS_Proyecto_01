@@ -207,7 +207,6 @@ $().ready(() => {
 							oLinea.append(oCeldaPrecio);
 							if (sessionStorage.getItem("sDescTipo") === "Administrador") {
 								oCeldaOpe = $("<td>");
-
 								if (!elem.activo) {
 									oBtnModif = $("<input>");
 									oBtnModif.prop({
