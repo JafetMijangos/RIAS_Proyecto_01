@@ -178,7 +178,6 @@ $().ready(() => {
 					oTblBody.innerHTML = "";
 
 					//Llena líneas
-
 					oDatos.data.arrProds.forEach(function (elem) {
 						oLinea = $("<tr>");
 						oCeldaCve = $("<td>");
