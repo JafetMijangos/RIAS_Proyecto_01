@@ -176,7 +176,6 @@ $().ready(() => {
 				if (oDatos.success) {//todo ok				
 					//Limpiar contenido de cuerpo de la tabla
 					oTblBody.innerHTML = "";
-
 					//Llena líneas
 					oDatos.data.arrProds.forEach(function (elem) {
 						oLinea = $("<tr>");
