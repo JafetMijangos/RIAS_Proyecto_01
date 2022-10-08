@@ -13,7 +13,7 @@
 		$bRet = false;
 			try{
 				//$this->oConexion = new PDO("pgsql:dbname=plantadb; host=localhost; user=planta2022; password=planta2022pwd"); 
-				$this->oConexion = new PDO("mysql:host=localhost:3308;dbname=pasteleriadb","pasteleria2022","pasteleria2022pwd",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'")); 
+				$this->oConexion = new PDO("mysql:host=localhost:3307;dbname=pasteleriadb","pasteleria2022","pasteleria2022pwd",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'")); 
 				$this->oConexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$bRet = true;
 			}catch(Exception $e){

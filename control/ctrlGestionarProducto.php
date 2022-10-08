@@ -34,7 +34,7 @@ $nAfectados = -1;
 						//Paso de datos a menos que sea baja
 						if ($sOpe != 'b'){
 							if (isset($_REQUEST["txtNom"]) && !empty($_REQUEST["txtNom"]) &&
-								isset($_REQUEST["cmbLinea"]) && !empty($_REQUEST["txtLinea"]) &&
+								isset($_REQUEST["cmbFiltro"]) && !empty($_REQUEST["cmbFiltro"]) &&
 								isset($_REQUEST["cmbTipo"]) && !empty($_REQUEST["cmbTipo"]) &&
 								isset($_REQUEST["txtDescripcion"]) && !empty($_REQUEST["txtDescripcion"]) &&
 								isset($_REQUEST["txtSabor"]) && !empty($_REQUEST["txtSabor"]) &&
@@ -42,8 +42,8 @@ $nAfectados = -1;
 								is_uploaded_file($_FILES["txtImg"]["tmp_name"])){
 
 								$oProducto->setNombre($_REQUEST["txtNom"]);
-								$oProducto->setLinea($_REQUEST["cmbLinea"]);
-								$oProducto->setTipo($_REQUEST["cmbTipo"]);
+								$oProducto->setTipo($_REQUEST["cmbFiltro"]);
+								$oProducto->setLinea($_REQUEST["cmbTipo"]);
 								$oProducto->setDescripcion($_REQUEST["txtDescripcion"]);
 								$oProducto->setSabor($_REQUEST["txtSabor"]);
 								$oProducto->setPrecio($_REQUEST["txtPrecio"]);								

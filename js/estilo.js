@@ -52,7 +52,7 @@ $().ready(() => {
                 sErr = "Faltan datos para buscar";
             else{
                 $.getJSON({ 
-                    url: "control/ctrlBuscaPlantas.php",
+                    url: "control/ctrlBuscaProductos.php",
                     data: { 
                         cmbTipo: $("#cmbTipo").val(),
                         cmbFiltro: $("#cmbFiltro").val()

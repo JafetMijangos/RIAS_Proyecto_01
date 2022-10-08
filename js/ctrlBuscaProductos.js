@@ -19,13 +19,12 @@ $().ready(() => {
 		let oFrmDatos = new FormData();
 		event.preventDefault();
 		if ($("#txtOpe").val() === "b" ||
-			$("#frmEdProductoss")[0].checkValidity()) {
+			$("#frmEdProductos")[0].checkValidity()) {
 			//Ya no verifica elementos porque, de no existir, no habría llegado a este punto
-			oFrmDatos.append("cmbTipo", $("#txtTipo").val());
 			oFrmDatos.append("txtCve", $("#txtCve").val());
 			oFrmDatos.append("txtOpe", $("#txtOpe").val());
-			oFrmDatos.append("txtNombre", $("#txtNombre").val());
-			oFrmDatos.append("cmbLinea", $("#cmbLinea").val());
+			oFrmDatos.append("txtNom", $("#txtNom").val());
+			oFrmDatos.append("cmbFiltro", $("#cmbFiltro").val());
 			oFrmDatos.append("cmbTipo", $("#cmbTipo").val());
 			oFrmDatos.append("txtDescripcion", $("#txtDescripcion").val());
 			oFrmDatos.append("txtSabor", $("#txtSabor").val());
@@ -101,6 +100,11 @@ $().ready(() => {
 			$("#txtTipo").val(nTipo);
 			$("#txtOpe").val(sOpe);
 			
+			$("#cmbTipo").html(getTipo());
+		    $("#lbTipo").html("Tipo");
+			$("#cmbFiltro").html(getFiltro());
+		    $("#lbFiltro").html("Filtro");
+
 			if (sOpe==="b"){
 				bDisabled = true;
 				$("#frmEdProductos").attr("novalidate","novalidate");
@@ -118,8 +122,8 @@ $().ready(() => {
 				})
 				.done( (oDatos) => {
 					$("#txtNom").val(oDatos.data.nombre);
-					$("#cmbLinea").val(oDatos.data.linea);
-					$("#cmbLinea").selectmenu("refresh");
+					$("#cmbFiltro").val(oDatos.data.linea);
+					$("#cmbFiltro").selectmenu("refresh");
 					$("#cmbTipo").val(oDatos.data.tipo);
 					$("#cmbTipo").selectmenu("refresh");
 					$("#txtDescripcion").val(oDatos.data.descripcion);
@@ -140,8 +144,8 @@ $().ready(() => {
 				$("#txtPrecio").prop({disabled: bDisabled});
 				$("#txtImg").prop({disabled: bDisabled});
 				$("#dlgEdProductos").dialog( "open" );  //Debe ir antes del selectmenu por un bug de jQuery
-				$("#cmbLinea").selectmenu();
-				$("#cmbLinea").selectmenu("refresh");
+				$("#cmbFiltro").selectmenu();
+				$("#cmbFiltro").selectmenu("refresh");
 				$("#cmbTipo").selectmenu();
 				$("#cmbTipo").selectmenu("refresh");
 			}else{
@@ -203,7 +207,8 @@ $().ready(() => {
 							oLinea.append(oCeldaPrecio);
 							if (sessionStorage.getItem("sDescTipo") === "Administrador") {
 								oCeldaOpe = $("<td>");
-								if (elem.activo) {
+
+								if (!elem.activo) {
 									oBtnModif = $("<input>");
 									oBtnModif.prop({
 										type: "button",
@@ -270,3 +275,19 @@ $().ready(() => {
 	}
 
 });
+
+function getTipo() {
+	return '<option value="0">Todos</option>' +
+		'<option value="1">Pastel</option>' +
+		'<option value="2">Galletas</option>' +
+		'<option value="3">Gelatinas</option>' +
+		'<option value="4">Panquesitos</option>';
+}
+
+function getFiltro() {
+	return '<option value="0">Todos</option>' +
+		'<option value="1">Normal</option>' +
+		'<option value="2">Dietético</option>' +
+		'<option value="3">Diabético</option>' +
+		'<option value="4">Vegano</option>';
+}
