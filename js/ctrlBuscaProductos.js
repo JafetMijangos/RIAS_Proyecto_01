@@ -6,12 +6,70 @@ Autor:    Pasteleria
 */
 $().ready(() => {
 
-	$('#btnBuscar').click(function (event) {
-		llamaBusqueda();
+	$('#btnEnviar').button();
+    $('#btnRegistro').button();
+    $('#btnBuscar').button();
+    $('#cmbLinea').selectmenu();
+    $('#cmbTipo').selectmenu();
+    $("#btnCrearProducto").button();
+    $("input[type='checkbox']" ).checkboxradio();
+    $("#btnGestionar").button();
+	$("#dlgEdProductos").dialog({
+		autoOpen: false,
+		show: {
+			effect: "fold", 
+			duration: 650
+		},
+		hide: {
+			effect: "fold", 
+			duration: 650
+		},
+		width:"60%",
+		modal: true
 	});
 
+	$("#precio").slider({
+        range: "max",
+        min: 1,
+        max: 85,
+        value: 20,
+        slide: function (event, ui) {
+            $("#txtPrecio").val(ui.value);
+        }
+    });
+    $("#txtPrecio").val($("#precio").slider("value"));
+    $("#txtPrecio").css({
+        "border": "1",
+        "color": "#000000",
+        "font-weight": "bold"
+    });
+
+//Cosas importantes 
+	$("#cmbLinea").selectmenu({
+        change: function (event, ui) {
+            switch ($(this).val()) {
+                case "1":
+                    $("#cmbTipo").html(getTipo());
+                    break;
+                case "2":
+                    $("#cmbTipo").html(getTipo());
+                    break;
+                case "3":
+                    $("#cmbTipo").html(getTipo());
+                    break;
+                case "4":
+                    $("#cmbTipo").html(getTipo());
+                    break;
+                default: $("#cmbTipo").html('<option value="0">Todos</option>');
+            }
+            $("#cmbTipo").selectmenu("refresh");
+        }
+    });
+
+
+
 	$('#btnCrearProducto').click(function (event) {
-		muestraDlgEdProductos("a", -1, $("#cmbTipo").val());
+		muestraDlgEdProductos("a", -1);
 	});
 
 	$("#frmEdProductos").submit(function (event) {
@@ -24,8 +82,8 @@ $().ready(() => {
 			oFrmDatos.append("txtCve", $("#txtCve").val());
 			oFrmDatos.append("txtOpe", $("#txtOpe").val());
 			oFrmDatos.append("txtNom", $("#txtNom").val());
-			oFrmDatos.append("cmbFiltro", $("#cmbFiltro").val());
-			oFrmDatos.append("cmbTipo", $("#cmbTipo").val());
+			oFrmDatos.append("cmbLineaD", $("#cmbLineaD").val());
+			oFrmDatos.append("cmbTipoD", $("#cmbTipoD").val());
 			oFrmDatos.append("txtDescripcion", $("#txtDescripcion").val());
 			oFrmDatos.append("txtSabor", $("#txtSabor").val());
 			oFrmDatos.append("txtPrecio", $("#txtPrecio").val());
@@ -39,12 +97,12 @@ $().ready(() => {
 			})
 				.done((oDatos) => {
 					if (oDatos.success) {
-						alert("Datos almacenados");
+						swal("Éxito","Datos almacenados", "success");
 						$("#dlgEdProductos").dialog("close");
 						$("#frmBuscarProd").css("display", "block");
 						$("#resBuscarProd").css("display", "none");
 					} else {
-						alert("Error al almacenar: " + oDatos.status);
+						swal("Error","Error al almacenar: " + oDatos.status,"warning");
 					}
 				})
 				.fail(function (objResp, status, sError) {
@@ -55,30 +113,37 @@ $().ready(() => {
 	});
 
 //Agregar funcion muestraDlgProductos 238 de la profa
-	function llamaBusqueda() {
-		let urlLlamada = "control/ctrlBuscaProducto.php";
-		let oCmb = document.getElementById("cmbTipo");
-		let oCmbFiltro = document.getElementById("cmbFiltro");
-		let sQueryString = "";
-		if (oCmb === null || oCmbFiltro === null) {
-			swal("Error", "Faltan datos para buscar", "warning");
-		} else {
-			//Se configura la llamada para pedir los datos
-			sQueryString = "?cmbTipo=" + oCmb.options[oCmb.selectedIndex].value +
-				"&cmbFiltro=" + oCmbFiltro.options[oCmbFiltro.selectedIndex].value;
-			fetch(urlLlamada + sQueryString)
-				.then((response) => { return response.json(); })
-				.then((datosConvertidos) => {
-					procesaProductosEncontrados(datosConvertidos);
-				})
-				.catch((error) => {
-					swal("Error", "Error al realizar la llamada", "warning");
-					console.error(error);
-				});
+$('#btnBuscar').click(function(event){
+	let sErr="";
+		event.preventDefault();
+		if ($("#cmbLinea")===null ||$("#cmbLinea").val()==="" || $("#cmbTipo")===null)
+			sErr = "Faltan datos para buscar";
+		else{
+			$.getJSON({ 
+				url: "control/ctrlBuscaProducto.php",
+				data: { 
+					cmbLinea: $("#cmbLinea").val(),
+					cmbTipo: $("#cmbTipo").val()
+				}
+			})
+			.done( (oDatos) => {
+				procesaProductosEncontrados(oDatos);
+			})
+			.fail(function(objResp, status, sError){
+				sErr = sError;
+				console.log(sError);
+			})
+			.always(function(objResp, status){
+				console.log("Llamada externa completada con situación = "+status);
+			});
 		}
-	}
+		if (sErr !== "")
+			alert(sErr);
+	});	
 
-	function muestraDlgEdProductos(sOpe, nClave, nTipo){
+
+
+	function muestraDlgEdProductos(sOpe, nClave/*, nTipo*/){
 		let sTitulo = "";
 		let sErr = "";
 		let bDisabled = false;
@@ -92,18 +157,15 @@ $().ready(() => {
 					break;
 				default: sTitulo="Error";
 			}
-			$("#dlgEdProductos").dialog("option", "title", sTitulo+" postres");
+			$("#dlgEdProductos").dialog("option", "title", sTitulo+" postre");
 			$("#btnGestionar").val(sTitulo);
 			//Limpiar campos de captura y colocar valores por omisión
 			$("#frmEdProductos")[0].reset();
 			$("#txtCve").val(nClave);
-			$("#txtTipo").val(nTipo);
+			//$("#txtTipo").val(nTipo);
 			$("#txtOpe").val(sOpe);
 			
-			$("#cmbTipo").html(getTipo());
-		    $("#lbTipo").html("Tipo");
-			$("#cmbFiltro").html(getFiltro());
-		    $("#lbFiltro").html("Filtro");
+		
 
 			if (sOpe==="b"){
 				bDisabled = true;
@@ -122,13 +184,15 @@ $().ready(() => {
 				})
 				.done( (oDatos) => {
 					$("#txtNom").val(oDatos.data.nombre);
-					$("#cmbFiltro").val(oDatos.data.linea);
-					$("#cmbFiltro").selectmenu("refresh");
-					$("#cmbTipo").val(oDatos.data.tipo);
-					$("#cmbTipo").selectmenu("refresh");
+					$("#cmbLineaD").val(oDatos.data.linea);
+					
+					$("#cmbTipoD").val(oDatos.data.tipo);
+
 					$("#txtDescripcion").val(oDatos.data.descripcion);
 					$("#txtSabor").val(oDatos.data.sabor);
 					$("#txtPrecio").val(oDatos.data.precio);
+					$("#cmbLineaD").selectmenu("refresh");
+					$("#cmbTipoD").selectmenu("refresh");
 				})
 				.fail(function(objResp, status, sError){
 					sErr = sError;
@@ -137,19 +201,19 @@ $().ready(() => {
 			}
 			if (sErr=== ""){
 				$("#txtNom").prop({disabled: bDisabled});
-				$("#cmbLinea").prop({disabled: bDisabled});
-				$("#cmbTipo").prop({disabled: bDisabled});
+				$("#cmbLineaD").prop({disabled: bDisabled});
+				$("#cmbTipoD").prop({disabled: bDisabled});
 				$("#txtDescripcion").prop({disabled: bDisabled});
 				$("#txtSabor").prop({disabled: bDisabled});
 				$("#txtPrecio").prop({disabled: bDisabled});
 				$("#txtImg").prop({disabled: bDisabled});
 				$("#dlgEdProductos").dialog( "open" );  //Debe ir antes del selectmenu por un bug de jQuery
-				$("#cmbFiltro").selectmenu();
-				$("#cmbFiltro").selectmenu("refresh");
-				$("#cmbTipo").selectmenu();
-				$("#cmbTipo").selectmenu("refresh");
+				$("#cmbLineaD").selectmenu();
+				$("#cmbTipoD").selectmenu();
+				$("#cmbLineaD").selectmenu("refresh");
+				$("#cmbTipoD").selectmenu("refresh");
 			}else{
-				alert("Error al editar producto");
+				swal("Error","Error al editar producto", "Warning");
 				$("#dlgEdProductos").dialog( "close" );
 			}
 			
@@ -161,7 +225,7 @@ $().ready(() => {
 		let oNodoDiv = $("#resBuscarProd");
 		let oTblBody = $("#tblBodyProds");
 		let oCelCabPrecio = $("#tdPrecio");
-		let oCeldaCve, oCeldaNombre, oCeldaLinea, oCeldaTipo, oCeldaDescripcion, oCeldaSabor, oCeldaImagen, oCeldaPrecio, oCeldaOpe, oBtnModif, oBtnElim;
+		let oCeldaCve, oCeldaNombre, oCeldaLinea, oCeldaTipo, oCeldaDescripcion, oCeldaSabor, oCeldaImagen, oCeldaPrecio, oCelCabOpe, oBtnModif, oBtnElim;
 		let sError = "";
 		let oFmt = new Intl.NumberFormat('es-MX', {
 			style: 'currency',
@@ -204,8 +268,8 @@ $().ready(() => {
 							oCeldaPrecio.text(oFmt.format(elem.precio));
 							oLinea.append(oCeldaPrecio);
 							if (sessionStorage.getItem("sDescTipo") === "Administrador") {
-								oCeldaOpe = $("<td>");
-								if (!elem.activo) {
+								oCelCabOpe = $("<td>");
+								if (elem.activo) {
 									oBtnModif = $("<input>");
 									oBtnModif.prop({
 										type: "button",
@@ -215,10 +279,9 @@ $().ready(() => {
 									oBtnModif.button();
 									oBtnModif.click(function () {
 										muestraDlgEdProductos("m",
-											$(this).prop("id").substr(3),
-											$("#cmbTipo").val());//No nos acordamos para qué está xd
+											$(this).prop("id").substr(3));//Ya nos acordamos para qué está xd
 									});
-									oCeldaOpe.append(oBtnModif);
+									oCelCabOpe.append(oBtnModif);
 									oBtnElim = $("<input>");
 									oBtnElim.prop({
 										type: "button",
@@ -228,14 +291,13 @@ $().ready(() => {
 									oBtnElim.button();
 									oBtnElim.click(function () {
 										muestraDlgEdProductos("b",
-											$(this).prop("id").substr(4),
-											$("#cmbTipo").val());
+											$(this).prop("id").substr(4));
 									});
-									oCeldaOpe.append(oBtnElim);
+									oCelCabOpe.append(oBtnElim);
 								} else {
-									oCeldaOpe.text(" ");
+									oCelCabOpe.text(" ");
 								}
-								oLinea.append(oCeldaOpe);
+								oLinea.append(oCelCabOpe);
 							}
 						}
 						oTblBody.append(oLinea);
@@ -273,7 +335,7 @@ $().ready(() => {
 
 });
 
-function getTipo() {
+function getLinea() {
 	return '<option value="0">Todos</option>' +
 		'<option value="1">Pastel</option>' +
 		'<option value="2">Galletas</option>' +
@@ -281,10 +343,11 @@ function getTipo() {
 		'<option value="4">Panquesitos</option>';
 }
 
-function getFiltro() {
+function getTipo() {
 	return '<option value="0">Todos</option>' +
 		'<option value="1">Normal</option>' +
 		'<option value="2">Dietético</option>' +
 		'<option value="3">Diabético</option>' +
 		'<option value="4">Vegano</option>';
 }
+

@@ -23,6 +23,7 @@ class ErroresAplic
 	const TIPO_PROD_INEXISTENTE = 13;
 	const OPE_DESCONOCIDA = 14;
 	const OPE_NO_REALIZADA = 15;
+	const MENSAJE = 16;
 
 	public function getError()
 	{
@@ -78,6 +79,9 @@ class ErroresAplic
 				break;
 			case self::OPE_NO_REALIZADA:
 				$sMsjError = "La operación solicitada no se realizó";
+				break;
+			case self::MENSAJE:
+				$sMsjError = "Hasta aqui llego";
 				break;
 			default:
 				$sMsjError = "Error desconocido";

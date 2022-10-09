@@ -3,7 +3,7 @@ $().ready(() => {
     $('#btnEnviar').button();
     $('#btnRegistro').button();
     $('#btnBuscar').button();
-    $('#cmbFiltro').selectmenu();
+    $('#cmbLinea').selectmenu();
     $('#cmbTipo').selectmenu();
     $("#btnCrearProducto").button();
     $("input[type='checkbox']" ).checkboxradio();
@@ -23,24 +23,24 @@ $().ready(() => {
 	});
 
     //Reacción al cambio de tipo (y aspecto gráfico)
-    $("#cmbTipo").selectmenu({
+    $("#cmbLinea").selectmenu({
         change: function (event, ui) {
             switch ($(this).val()) {
                 case "1":
-                    $("#cmbFiltro").html(getTamanios());
+                    $("#cmbTipo").html(getTipo());
                     break;
                 case "2":
-                    $("#cmbFiltro").html(getTamanios());
+                    $("#cmbTipo").html(getTipo());
                     break;
                 case "3":
-                    $("#cmbFiltro").html(getTamanios());
+                    $("#cmbTipo").html(getTipo());
                     break;
                 case "4":
-                    $("#cmbFiltro").html(getTamanios());
+                    $("#cmbTipo").html(getTipo());
                     break;
-                default: $("#cmbFiltro").html('<option value="">Todos</option>');
+                default: $("#cmbTipo").html('<option value="">Todos</option>');
             }
-            $("#cmbFiltro").selectmenu("refresh");
+            $("#cmbTipo").selectmenu("refresh");
         }
     });
 
@@ -48,14 +48,14 @@ $().ready(() => {
     $('#btnBuscar').click(function(event){
         let sErr="";
             event.preventDefault();
-            if ($("#cmbTipo")===null ||$("#cmbTipo").val()==="" || $("#cmbFiltro")===null)
+            if ($("#cmbLinea")===null ||$("#cmbLinea").val()==="" || $("#cmbTipo")===null)
                 sErr = "Faltan datos para buscar";
             else{
                 $.getJSON({ 
                     url: "control/ctrlBuscaProductos.php",
                     data: { 
-                        cmbTipo: $("#cmbTipo").val(),
-                        cmbFiltro: $("#cmbFiltro").val()
+                        cmbLinea: $("#cmbLinea").val(),
+                        cmbTipo: $("#cmbTipo").val()
                     }
                 })
                 .done( (oDatos) => {
@@ -73,9 +73,7 @@ $().ready(() => {
                 alert(sErr);
         });
         //Reacción al click del botón crear
-        $('#btnCrearPlanta').click(function(event){
-            muestraDlgEdPlantas("a", -1, $("#cmbTipo").val());
-        });
+      
 
     //Comportamiento para control deslizante
     $("#precio").slider({
@@ -90,7 +88,7 @@ $().ready(() => {
     $("#txtPrecio").val($("#precio").slider("value"));
     $("#txtPrecio").css({
         "border": "0",
-        "color": "#003153",
+        "color": "#fffff",
         "background-color": $("section").css("background-color"),
         "font-weight": "bold"
     });
@@ -100,7 +98,7 @@ $().ready(() => {
     $('input[type="radio"]').checkboxradio();
     $('input[type="checkbox"]').checkboxradio();
 
-    function getTamanios() {
+    function getTipo() {
         return '<option value="0">Todos</option>' +
             '<option value="1">Normal</option>' +
             '<option value="2">Dietético</option>' +

@@ -213,7 +213,7 @@ class Producto
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
-            t1.sSabor, t1.sImagen, t1.sPrecio 
+            t1.sSabor, t1.sImagen, t1.sPrecio, t1.bActivo 
              FROM productos t1
              WHERE t1.nLinea = :lin
              ORDER BY t1.sNombre;
@@ -234,6 +234,7 @@ class Producto
                   $oProducto->setSabor($arrLinea[5]);
                   $oProducto->setImg($arrLinea[6]);
                   $oProducto->setPrecio($arrLinea[7]);
+                  $oProducto->setActivo($arrLinea[8]);
                   $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
                }
             }
@@ -256,7 +257,7 @@ class Producto
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
-            t1.sSabor, t1.sImagen, t1.sPrecio 
+            t1.sSabor, t1.sImagen, t1.sPrecio, t1.bActivo
              FROM productos t1
              WHERE t1.nTipo = :tip
              ORDER BY t1.sNombre;
@@ -277,6 +278,7 @@ class Producto
                   $oProducto->setSabor($arrLinea[5]);
                   $oProducto->setImg($arrLinea[6]);
                   $oProducto->setPrecio($arrLinea[7]);
+                  $oProducto->setActivo($arrLinea[8]);
                   $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
                }
             }
@@ -299,7 +301,7 @@ class Producto
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
-            t1.sSabor, t1.sImagen, t1.sPrecio 
+            t1.sSabor, t1.sImagen, t1.sPrecio, t1.bActivo 
              FROM productos t1
              WHERE t1.nLinea = :lin
              AND t1.nTipo = :tip
@@ -321,6 +323,7 @@ class Producto
                   $oProducto->setSabor($arrLinea[5]);
                   $oProducto->setImg($arrLinea[6]);
                   $oProducto->setPrecio($arrLinea[7]);
+                  $oProducto->setActivo($arrLinea[8]);
                   $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
                }
             }
@@ -344,7 +347,7 @@ class Producto
       else {
          if ($oAccesoDatos->conectar()) {
             $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
-                               t1.sSabor, t1.sImagen, t1.sPrecio 
+                               t1.sSabor, t1.sImagen, t1.sPrecio, t1.bActivo
                                   FROM productos t1
                         WHERE t1.nClaveProducto = :cve
                      ";
@@ -359,6 +362,7 @@ class Producto
                $this->setSabor($arrRS[0][5]);
                $this->setImg($arrRS[0][6]);
                $this->setPrecio($arrRS[0][7]);
+               $this->setActivo($arrRS[0][8]);
                $bRet = true;
             }
          }
@@ -381,9 +385,9 @@ class Producto
          throw new Exception("Producto->insertar: faltan datos");
       else {
          $sQuery = "INSERT INTO Productos (sNombre, nLinea, nTipo,
-                      sDescripcion, sSabor, sImagen, sPrecio)
+                      sDescripcion, sSabor, sImagen, sPrecio, bActivo)
                       VALUES (:nom, :linea, :tipo, :descripcion, :sabor,
-                            :img, :precio);";
+                            :img, :precio, true);";
          $arrParams = array(
             ":nom" => $this->sNombre,
             ":linea" => $this->nLineas,
@@ -391,7 +395,7 @@ class Producto
             ":descripcion" => $this->sDescripcion,
             ":sabor" => $this->sSabor,
             ":img" => $this->sImagen,
-            ":pecio" => $this->sPrecio
+            ":precio" => $this->sPrecio
          );
          if ($oAccesoDatos->conectar()) {
             $nRet = $oAccesoDatos->ejecutarComando($sQuery, $arrParams);
@@ -424,7 +428,8 @@ class Producto
                      sDescripcion = :descripcion,
                      sSabor = :sabor, 
                      sImagen = :img,
-                     sPrecio = :precio;
+                     sPrecio = :precio,
+                     bActivo = true
                      WHERE nClaveProducto = :clave
                        ;";
          $arrParams = array(
@@ -434,7 +439,7 @@ class Producto
             ":descripcion" => $this->sDescripcion,
             ":sabor" => $this->sSabor,
             ":img" => $this->sImagen,
-            ":pecio" => $this->sPrecio,
+            ":precio" => $this->sPrecio,
             ":clave" =>$this->nClaveProducto
          );
          if ($oAccesoDatos->conectar()) {

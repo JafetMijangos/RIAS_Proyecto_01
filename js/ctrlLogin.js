@@ -53,15 +53,15 @@ function procesa(oDatos) {
 				$("#paraTipo").text(oDatos.data.sDescTipo);
 
 				//Modificar menús
-				$("#mnuInicio").href = "inicio.php";
-				$("#mnuSalir").className = "menu nav-item nav-link";
+				$("#mnuInicio").attr("href", "inicio.php");
+				$("#mnuSalir").attr("class", "menu nav-item nav-link");
 
 				if (oDatos.data.sDescTipo === "Administrador") {
-					$("#mnuGesP").className = "menu nav-item nav-link";
-					$("#mnuReg").className = "menu_inhab";
+					$("#mnuGesP").attr("class", "menu nav-item nav-link");
+					$("#mnuReg").attr("class", "menu_inhab");
 				} else if (oDatos.data.sDescTipo === "Cliente") {
-					$("#mnuReg").className = "menu_inhab";
-					$("#mnuCompra").className = "menu nav-item nav-link";
+					$("#mnuReg").attr("class", "menu_inhab");
+					$("#mnuCompra").attr("class", "menu nav-item nav-link");
 				}
 
 				//Ocultar formulario y mostrar bienvenida*/

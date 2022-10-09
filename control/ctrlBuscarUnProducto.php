@@ -16,9 +16,7 @@ if (
 	$_SESSION["sTipoFirmado"] == Empleado::ADMINISTRADOR
 ) {
 	/*Verifica que hayan llegado los datos*/
-	if (
-		isset($_REQUEST["txtCve"]) && !empty($_REQUEST["txtCve"])
-	) {
+	if (isset($_REQUEST["txtCve"]) && !empty($_REQUEST["txtCve"])) {
 		try {
 			//Convierte el tipo indicado a número
 			//$nNum = intval(($_REQUEST["cmbTipo"]),10);
@@ -47,15 +45,15 @@ if ($nErr == -1) {
 			"success": true,
 			"status": "ok",
 			"data":{
-				"clave": ' . $oProducto->getClaveProducto() . ', 
-				"nombre":"' . $oProducto->getNombre() . '", 
-				"linea":"' . $oProducto->getLinea() . '", 
-				"tipo":"' . $oProducto->getTipo() . '",
-				"descripcion":"' . $oProducto->getDescripcion() . '",  
-				"sabor":"' . $oProducto->getSabor() . '", 
-				"imagen":"' . $oProducto->getImg() . '", 
-				"precio":' . $oProducto->getPrecio() . ',
-				"activo": ' . ($oProducto->getActivo() ? "true" : "false") . '
+				"clave": '.$oProducto->getClaveProducto().', 
+				"nombre":"'.$oProducto->getNombre().'", 
+				"linea":"'.$oProducto->getLinea().'", 
+				"tipo":"'.$oProducto->getTipo().'",
+				"descripcion":"'.$oProducto->getDescripcion().'",  
+				"sabor":"'.$oProducto->getSabor().'", 
+				"imagen":"'.$oProducto->getImg().'", 
+				"precio":'.$oProducto->getPrecio().',
+				"activo": '.($oProducto->getActivo()?"true":"false").'
 			}
 		}';
 } else {

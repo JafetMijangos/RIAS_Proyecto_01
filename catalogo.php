@@ -24,16 +24,16 @@ $sStyle = "none";
                     <div class="container-fluid about py-5">
                     <div class="container">
 					<form id="frmBuscarProd">
-						<label class="text-primary text-uppercase mb-4" for="cmbTipo">Tipo</label>
-						<select class="select" id="cmbTipo" required>
+						<label class="text-primary text-uppercase mb-4" for="cmbLinea">Tipo</label>
+						<select class="select" id="cmbLinea" required>
 							<option value="0">Todos</option>
 							<option value="1">Pasteles</option>
 							<option value="2">Galletas</option>
                             <option value="3">Gelatinas</option>
                             <option value="4">Panquesitos</option>
 						</select>
-						<label class="text-primary text-uppercase mb-4" for="cmbFiltro">Filtro</label>
-						<select class="select"s id="cmbFiltro">
+						<label class="text-primary text-uppercase mb-4" for="cmbTipo">Filtro</label>
+						<select class="select"s id="cmbTipo">
 							<option value="0">Todos</option>
 						</select>
 						<br/>
@@ -61,29 +61,29 @@ $sStyle = "none";
 							<tbody id="tblBodyProds">
 							</tbody>
 						</table>
-						<input type="button" value="Crear" id="btnCrearProducto"/>
+						<input type="button" value="Crear" id="btnCrearProducto" style="display: none;">
 					</div>
 
 					<div id="dlgEdProductos">
 						<form id="frmEdProductos" method="post" action="" enctype="multipart/form-data">
 							<input type="hidden" id="txtCve"/>
-							<input type="hidden" id="txtTipo"/>
+							
 							<input type="hidden" id="txtOpe"/>
 							<label for="txtNom">Nombre</label>
 							<input type="text" id="txtNom" required/>
 							<br>
-							<label for="cmbTipo" id="lbTipos"></label>
-							<select id="cmbTipo" required>
-							    <option value="0">Todos</option>
+							<label for="cmbLineaD" id="lbLineaD"></label>
+							<select id="cmbLineaD" required>
+							    <option value="">Seleccionar</option>
 							    <option value="1">Pasteles</option>
 							    <option value="2">Galletas</option>
                                 <option value="3">Gelatinas</option>
                                 <option value="4">Panquesitos</option>
 							</select>
 							&nbsp;&nbsp;
-							<label for="cmbFiltro" id="lbFiltro"></label>
-							<select id="cmbFiltro" required>
-							    <option value="0">Todos</option>
+							<label for="cmbTipoD" id="lbTipoD"></label>
+							<select id="cmbTipoD" required>
+							    <option value="">Seleccionar</option>
 							    <option value="1">Normal</option>
 							    <option value="2">Dietético</option>
                                 <option value="3">Diabético</option>
