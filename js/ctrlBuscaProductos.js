@@ -308,16 +308,16 @@ $('#btnBuscar').click(function(event){
 					if (sessionStorage.getItem("sDescTipo") === null ||
 						sessionStorage.getItem("sDescTipo") === "") {
 						oCelCabPrecio.css("display", "none");
-						oCelCabOpe.css("display", "none");
 						$('#btnCrearProducto').css("display", "none");
 					} else {
-						oCelCabPrecio.css("display", "table-cell");
+						$("#tdOpe").css("display", "none");
 						if (sessionStorage.getItem("sDescTipo") === "Administrador") {
+							oCelCabPrecio.css("display", "table-cell");
+							$("#tdOpe").css("display", "block");
 							oCelCabOpe.css("display", "table-cell");
 							$('#btnCrearProducto').css("display", "block");
 						}
 						else {
-							oCelCabOpe.css("display", "none");
 							$('#btnCrearProducto').css("display", "none");
 						}
 					}

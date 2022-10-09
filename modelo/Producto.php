@@ -172,7 +172,7 @@ class Producto
       $arrRet = array();
       if ($oAccesoDatos->conectar()) {
          $sQuery = "SELECT t1.nClaveProducto, t1.sNombre, t1.nLinea, t1.nTipo, t1.sDescripcion,
-                           t1.sSabor, t1.sImagen, t1.sPrecio 
+                           t1.sSabor, t1.sImagen, t1.sPrecio, t1.bActivo  
                             FROM productos t1
                             ORDER BY t1.sNombre;
                   ";
@@ -191,6 +191,7 @@ class Producto
                $oProducto->setSabor($arrLinea[5]);
                $oProducto->setImg($arrLinea[6]);
                $oProducto->setPrecio($arrLinea[7]);
+               $oProducto->setActivo($arrLinea[8]);
                $arrRet[] = $oProducto; //más rápido que array_push($arrRet, $oPlantaOrnato)
             }
          }
