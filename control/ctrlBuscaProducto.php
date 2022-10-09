@@ -23,14 +23,14 @@ $oErr = null;
 				$oProducto = new Producto();
 				$arrEncontrados = $oProducto->buscarTodos();
 				
-			}else if ($nFiltroLinea>0 && $nFiltroLinea<5){ // falta modificar para el segundo tipo - Filtro
+			}else if ($nFiltroLinea>0 && $nFiltroLinea<5){ // de 1 a 4 en linea
 				$oProducto = new Producto();
 				if ($nFiltroTipo>0 && $nFiltroTipo<5){
 					$oProducto->setLinea((int)$_REQUEST["cmbLinea"]);
 					$oProducto->setTipo((int)$_REQUEST["cmbTipo"]);
 					$arrEncontrados = $oProducto->buscarTodosFiltroDoble();
 				}else{
-					//sería deseable validar que sea número lo que se recibe
+					// buscar todos de linea y sin filtro
 					$oProducto->setLinea((int)$_REQUEST["cmbLinea"]);
 					$arrEncontrados = $oProducto->buscarTodosFiltroLinea();
 				}
