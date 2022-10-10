@@ -44,7 +44,7 @@ $sStyle = "none";
                     </div>
 					<div id="resBuscarProd" style="display:none">
 						<h4>Productos encontrados</h4>
-						<table border="1" id="tblProds">
+						<table id="tblProds">
 							<thead>
 								<tr>
 								<th>Clave</th>
@@ -72,6 +72,7 @@ $sStyle = "none";
 							<label for="txtNom">Nombre</label>
 							<input type="text" id="txtNom" required/>
 							<br>
+							<br>
 							<label for="cmbLineaD" id="lbLineaD"></label>
 							<select id="cmbLineaD" required>
 							    <option value="">Seleccionar</option>
@@ -90,18 +91,23 @@ $sStyle = "none";
                                 <option value="4">Vegano</option>
 							</select>
 							&nbsp;&nbsp;
-
+							<br>
+							<br>
 							<label for="txtDescripcion">Descripci&oacute;n</label>
 							<input type="text" id="txtDescripcion" required/>
+							<br>
 							<br>
 							<label for="txtSabor">Sabor</label>
 							<input type="text" id="txtSabor" required/>
 							<br>
+							<br>
 							<label for="txtImg">Imagen</label>
 							<input type="file" id="txtImg" required accept="image/jpg, image/png, image/jpeg"/>
 							<br>
+							<br>
 							<label for="txtPrecio">Precio</label>
 							<input type="number" id="txtPrecio" required/>
+							<br>
 							<br>
 							<input type="submit" id="btnGestionar"/>
 						</form>
