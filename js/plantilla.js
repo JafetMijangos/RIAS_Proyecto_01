@@ -67,8 +67,8 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 	'<h1 class="font-secondary text-primary mb-4">Pasteleria trigo de Oro</h1>' +
 	'<h1 class="display-1 text-uppercase text-white mb-4">¿Lo quieres?, ¡¡Lo tenemos!!</h1>' +
 	'<h1 class="text-uppercase text-white">Los mejores pasteles de Orizaba</h1>' +
-	'<figure>'+
-'<img src="img/amimacion.png" border="0" class="paraTraslado"/>' +
+	'<figure>' +
+	'<img src="img/amimacion.png" border="0" class="paraTraslado"/>' +
 	'</figure>' +
 	'</div>' +
 	'</div>' +
@@ -77,8 +77,13 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 
 
 var pral = '<main id="main-content">' +
-	'<section id="sct1">' +
+'<center><h1 class="tituloN">Ingresar al Sistema</h1></center>' +
+	'<div class="forIng">' +
+	'<br><br><br><section id="sct1">' +
+	'<div class="col-lg-12 col-md-6 text-center">' +
+	'</div>' +
 	'</section>' +
+	'</div>'+
 	'</main>';
 
 var pie = '<div class="container-fluid service position-relative px-5 mt-5" style="margin-bottom: 135px;">' +

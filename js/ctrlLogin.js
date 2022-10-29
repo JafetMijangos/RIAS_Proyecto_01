@@ -1,83 +1,100 @@
 /*
 Archivo:  ctrlLogin.js
-Objetivo: código de jQuery para realizar login mediante llamada parcial a PHP
+Objetivo: presenta formulario ExtJS para login, realiza envío parcial,
+		  espera JSON como respuesta
 Autor:    BAOZ
 */
+Ext.require([
+	'Ext.plugin.Viewport'
+]);
+Ext.onReady(function () {
+	//Limpia la sesión
+	sessionStorage.setItem('nombreFirmado', '');
+	sessionStorage.setItem('tipoFirmado', '');
 
-//Si pasa por aquí es que se encuentra en index.php y no hay sesión todavía
-sessionStorage.clear();
-
-//Configurar botón
-$().ready(() => {
-	//Aspecto gráfico
-	$('#btnEnviar').button();
-	//Reacción al click
-	$('#btnEnviar').click(function (event) {
-		event.preventDefault();
-		if ($("#txtCorreoUsu") === null || $("#txtPwd") === null ||
-			$("#txtCorreoUsu").val().trim() === "" || $("#txtPwd").val().trim() === "") {
-			swal("Error", "Faltan datos para el ingreso", "warning");
-
-		} else {
-			$.post({
-				url: "control/ctrlLogin.php",
-				data: { //Al ser post, se genera el equivalente a formulario
-					txtCorreoUsu: $("#txtCorreoUsu").val(),
-					txtPwd: $("#txtPwd").val()
+	Ext.create('Ext.form.Panel', {
+		title: 'Ingresar al Sistema',
+		bodyPadding: 5,
+		width: '100%',
+		url: "control/ctrlLogin.php",
+		standardSubmit: false, //para request parcial
+		defaultType: 'textfield',
+		items: [
+			{
+				fieldLabel: 'Correo',
+				vtype: 'email',
+				name: 'txtCorreoUsu',
+				allowBlank: false
+			},
+			{
+				fieldLabel: 'Contrase&ntilde;a', //no funciona el tipo password en CLASSIC
+				name: 'txtPwd',
+				allowBlank: false,
+				inputType: 'password'
+			}],
+		buttons: [{
+			text: 'Enviar',
+			handler: function () {
+				var frm = this.up('form').getForm();
+				if (frm.isValid()) {
+					// Envío de forma parcial por la configuración inicial
+					frm.submit({
+						success: function (form, action) {
+							//Guarda información de sesión en cliente
+							sessionStorage.setItem('nombreFirmado',
+								action.result.data.sNombreCompleto);
+							sessionStorage.setItem('tipoFirmado',
+								action.result.data.sDescTipo);
+							//Cambia contenido de la pantalla				
+							Ext.get("sct1").setHtml(
+								'<header>' +
+								'	<h3 class="text-primary font-secondary">Bienvenido</h3>' +
+								'<div id="divBienvenido" >' +
+								'<h1 class="text-primary font-secondary">Hola ' + action.result.data.sNombreCompleto + '</h1>' +
+								'<h1 class="text-primary font-secondary">Est&aacute;s firmado como ' + action.result.data.sDescTipo + '</h1>' +
+								'</div>' +
+								'</div>');
+							//Cambia la dirección del menú Inicio
+							Ext.get("mnuInicio").set(
+								{ href: "bienvenido.php" });
+							//Cambia el estilo del menú Salir
+							Ext.get("mnuSalir").set(
+								{ cls: "menu" });
+							//Cambia los estilos de los menús por perfil
+							Ext.get("mnuCltes").set(
+								{
+									cls:
+										(action.result.data.sDescTipo === 'Cajero' ? " menu" : " menu_inhab")
+								});
+							Ext.get("mnuEnvios").set(
+								{
+									cls:
+										(action.result.data.sDescTipo === 'Almacenista' ? " menu" : " menu_inhab")
+								});
+							Ext.get("menuEmp").set(
+								{
+									cls:
+										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+								});
+							Ext.get("mnuReg").set(
+								{
+									cls:
+										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+								});
+							Ext.get("mnuUsos").set(
+								{
+									cls:
+										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+								});
+						},
+						failure: function (form, action) {
+							Ext.Msg.alert('Error',
+								action.result ? action.result.status : 'Sin respuesta');
+						}
+					});
 				}
-			})
-				.done((oDatos) => {
-					procesa(oDatos);
-				})
-				.fail(function (objResp, status, sError) {
-					swal("Error", 'El servidor indica error ' + status, "warning");
-					console.log(sError);
-				})
-				.always(function (objResp, status) {
-					console.log("Llamada externa completada con situación = " + status);
-				});
-		}
+			}
+		}],
+		renderTo: Ext.get('sct1')
 	});
 });
-
-function procesa(oDatos) {
-	let sError = "";
-	try {
-		if ($("#frmLogin") === null || $("#divBienvenido") === null ||
-			$("#paraNombre") === null || $("#paraTipo") === null) {
-			sError = "Error en HTML";
-		} else {
-			if (oDatos.success) {
-				//Colocar nombre y tipo
-				$("#paraNombre").text(oDatos.data.sNombreCompleto);
-				$("#paraTipo").text(oDatos.data.sDescTipo);
-
-				//Modificar menús
-				$("#mnuInicio").attr("href", "inicio.php");
-				$("#mnuSalir").attr("class", "menu nav-item nav-link");
-
-				if (oDatos.data.sDescTipo === "Administrador") {
-					$("#mnuGesP").attr("class", "menu nav-item nav-link");
-					$("#mnuReg").attr("class", "menu_inhab");
-				} else if (oDatos.data.sDescTipo === "Cliente") {
-					$("#mnuReg").attr("class", "menu_inhab");
-					$("#mnuCompra").attr("class", "menu nav-item nav-link");
-				}
-
-				//Ocultar formulario y mostrar bienvenida*/
-				$("#frmLogin").css("display", "none");
-				$("#divBienvenido").css("display", "block");
-
-				//Iniciar sesión
-				sessionStorage.setItem("sDescTipo", oDatos.data.sDescTipo);
-			} else {
-				sError = oDatos.status;
-			}
-		}
-	} catch (error) {
-		console.log(error.message);
-		sError = "Error al procesar respuesta del servidor";
-	}
-	if (sError != "")
-		swal("Error", sError, "warning");
-}
