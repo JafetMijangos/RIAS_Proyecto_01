@@ -8,9 +8,9 @@ Ext.require([
 ]);
 var sNomFirm = (sessionStorage.getItem('nombreFirmado') === null ? "" : sessionStorage.getItem('nombreFirmado'));
 var sTipoFirm = (sessionStorage.getItem('tipoFirmado') === null ? "" : sessionStorage.getItem('tipoFirmado'));
-var sClsMnCajero = (sTipoFirm === 'Cajero' ? 'menu' : 'menu_inhab');
-var sClsMnAlmacenista = (sTipoFirm === 'Almacenista' ? 'menu' : 'menu_inhab');
 var sClsMnAdmor = (sTipoFirm === 'Administrador' ? 'menu' : 'menu_inhab');
+var sClsMnCliente = (sTipoFirm === '' ? 'menu_inhab' : 'menu');
+var OculREg = 'menu';
 var sClsMnSalir = (sTipoFirm === '' || sTipoFirm.length === 0 ? 'menu_inhab' : 'menu');
 
 
@@ -55,10 +55,13 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 	'</button>' +
 	'<div class="collapse navbar-collapse" id="navbarCollapse">' +
 	'<div class="navbar-nav ms-auto mx-lg-auto py-0">' +
-	'<a href="#" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>' +
-	'<a href="https://www.instagram.com/g_moya110101/" class="menu nav-item nav-link">Instagram</a>' +
-	'</div>' +
-	'</div>' +
+	'<a href="'+(sNomFirm === ''?'index.php':'inicio.php')+'" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>'+			
+				'<a href="catalogo.php" class="menu nav-item nav-link" id="mnuCatalogo">Cat&aacute;logo de Productos</a>'+
+				'<a href="clienteReg.php" class="'+OculREg+' menu nav-item nav-link" id="mnuReg">Registrarse</a>'+
+				'<a href="productos.php" class="'+sClsMnAdmor+' nav-item nav-link" id="mnuGesP">Gestionar Productos</a>'+
+				'<a href="comprar.php" class="'+sClsMnCliente+'  nav-item nav-link" id="mnuCompra">Comprar</a>'+
+				'<a href="control/ctrlLogout.php" class="'+sClsMnSalir+' nav-item nav-link" id="mnuSalir">Salir</a>'+					
+            '</div>'+
 	'</nav > ' +
 	'<div class="container-fluid bg-primary py-5 mb-5 hero-header">' +
 	'<div class="container py-5">' +

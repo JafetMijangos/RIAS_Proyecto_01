@@ -56,35 +56,30 @@ Ext.onReady(function () {
 								'</div>');
 							//Cambia la dirección del menú Inicio
 							Ext.get("mnuInicio").set(
-								{ href: "bienvenido.php" });
+								{ href: "inicio.php" });
 							//Cambia el estilo del menú Salir
 							Ext.get("mnuSalir").set(
-								{ cls: "menu" });
+								{ cls: "menu nav-item nav-link" });
 							//Cambia los estilos de los menús por perfil
-							Ext.get("mnuCltes").set(
+							Ext.get("mnuGesP").set(
 								{
 									cls:
-										(action.result.data.sDescTipo === 'Cajero' ? " menu" : " menu_inhab")
-								});
-							Ext.get("mnuEnvios").set(
-								{
-									cls:
-										(action.result.data.sDescTipo === 'Almacenista' ? " menu" : " menu_inhab")
-								});
-							Ext.get("menuEmp").set(
-								{
-									cls:
-										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+										(action.result.data.sDescTipo === 'Administrador' ? "menu nav-item nav-link" : " menu_inhab")
 								});
 							Ext.get("mnuReg").set(
 								{
-									cls:
-										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+									cls: "menu_inhab"
+										//(action.result.data.sDescTipo === 'Administrador' ? " menu_inhab" : "menu nav-item nav-link")
 								});
-							Ext.get("mnuUsos").set(
+							Ext.get("mnuReg").set(
+								{
+									cls: "menu_inhab"
+										//(action.result.data.sDescTipo === 'Cliente' ? "menu_inhab" : " menu")
+								});
+							Ext.get("mnuCompra").set(
 								{
 									cls:
-										(action.result.data.sDescTipo === 'Administrador' ? " menu" : " menu_inhab")
+										(action.result.data.sDescTipo === 'Cliente' ? "nav-item nav-link" : " menu_inhab")
 								});
 						},
 						failure: function (form, action) {
