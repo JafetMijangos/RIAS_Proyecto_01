@@ -10,7 +10,6 @@ var sNomFirm = (sessionStorage.getItem('nombreFirmado') === null ? "" : sessionS
 var sTipoFirm = (sessionStorage.getItem('tipoFirmado') === null ? "" : sessionStorage.getItem('tipoFirmado'));
 var sClsMnAdmor = (sTipoFirm === 'Administrador' ? 'menu' : 'menu_inhab');
 var sClsMnCliente = (sTipoFirm === '' ? 'menu_inhab' : 'menu');
-var OculREg = 'menu';
 var sClsMnSalir = (sTipoFirm === '' || sTipoFirm.length === 0 ? 'menu_inhab' : 'menu');
 
 
@@ -57,10 +56,10 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 	'<div class="navbar-nav ms-auto mx-lg-auto py-0">' +
 	'<a href="'+(sNomFirm === ''?'index.php':'inicio.php')+'" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>'+			
 				'<a href="catalogo.php" class="menu nav-item nav-link" id="mnuCatalogo">Cat&aacute;logo de Productos</a>'+
-				'<a href="clienteReg.php" class="'+OculREg+' menu nav-item nav-link" id="mnuReg">Registrarse</a>'+
+	/*			'<a href="clienteReg.php" class="'+' menu nav-item nav-link" id="mnuReg">Registrarse</a>'+
 				'<a href="productos.php" class="'+sClsMnAdmor+' nav-item nav-link" id="mnuGesP">Gestionar Productos</a>'+
-				'<a href="comprar.php" class="'+sClsMnCliente+'  nav-item nav-link" id="mnuCompra">Comprar</a>'+
-				'<a href="control/ctrlLogout.php" class="'+sClsMnSalir+' nav-item nav-link" id="mnuSalir">Salir</a>'+					
+				'<a href="comprar.php" class="'+sClsMnCliente+'  nav-item nav-link" id="mnuCompra">Comprar</a>'+*/
+				'<a href="javascript:salir();" class="'+sClsMnSalir+' nav-item nav-link" id="mnuSalir">Salir</a>'+
             '</div>'+
 	'</nav > ' +
 	'<div class="container-fluid bg-primary py-5 mb-5 hero-header">' +
@@ -80,7 +79,6 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 
 
 var pral = '<main id="main-content">' +
-'<center><h1 class="tituloN">Ingresar al Sistema</h1></center>' +
 	'<div class="forIng">' +
 	'<br><br><br><section id="sct1">' +
 	'<div class="col-lg-12 col-md-6 text-center">' +

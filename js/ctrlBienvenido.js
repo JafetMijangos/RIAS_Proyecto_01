@@ -14,11 +14,11 @@ Ext.onReady(function () {
 		'<section>' +
 		'<header>' +
 		'<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">' +
-		'<h2 class="text-primary font-secondary">Bienvenido ' + sNom + '></h2>' +
+		'<h2 class="text-primary font-secondary">Bienvenido ' + sNom + '</h2>' +
 		'</div>' +
 		'</header>' +
 		'<div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">' +
-		'<h1 class="display-4 text-uppercase">Est&aacute;s firmado como ' + sTipo + '</h1>' +
+		'<h1 class="text-primary font-secondary">Est&aacute;s firmado como ' + sTipo + '</h1>' +
 		'</div>' +
 		'</section>' +
 		'</main>'
