@@ -6,7 +6,7 @@ Ext.namespace('Ext.datos');
 
 //Formulario
 Ext.datos.Linea = [
-	//{ "cve": "0", "sDescrip": "Todos" },
+	{ "nLinea": "0", "sDescrip": "Todos" },
 	{ "nLinea": "1", "sDescrip": "Pasteles" },
 	{ "nLinea": "2", "sDescrip": "Galletas" },
 	{ "nLinea": "3", "sDescrip": "Gelatinas" },
@@ -14,7 +14,7 @@ Ext.datos.Linea = [
 ];
 
 Ext.datos.Tipo = [
-	//{ "cve": 0, "sDescrip": "Todos" },
+	{ "nTipo": 0, "sDescrip": "Todos" },
 	{ "nTipo": 1, "sDescrip": "Normal" },
 	{ "nTipo": 2, "sDescrip": "Dietetico" },
 	{ "nTipo": 3, "sDescrip": "Diabetico" },
@@ -47,7 +47,7 @@ Ext.define('ModProductos', {
 		{ name: 'tipo', type: 'string' },
 		{ name: 'descripcion', type: 'string' },
 		{ name: 'sabor', type: 'string' },
-		{ name: 'img', type: 'string' },
+		{ name: 'imagen', type: 'string' },
 		{ name: 'precio', type: 'float' },
 		{ name: 'activo', type: 'boolean' }
 	]
@@ -56,23 +56,24 @@ Ext.define('ModProductos', {
 Ext.onReady(function () {
 	let nLinActual = -1;
 	let nLinea = 0;
+	let nTipo = 0;
 	let dlg;
 
 	let arrDatosLinea = Ext.create('Ext.data.Store', {
-		fields: ["cve", "sDescrip"],
+		fields: ["nLinea", "sDescrip"],
 		data: Ext.datos.Linea
 	});
 	let arrDatosTipo = Ext.create('Ext.data.Store', {
-		fields: ["cve", "sDescrip"],
+		fields: ["nTipo", "sDescrip"],
 		data: Ext.datos.Tipo
 	});
 
 	let arrDatosLineaD = Ext.create('Ext.data.Store', {
-		fields: ["cve", "sDescrip"],
+		fields: ["nLineaD", "sDescrip"],
 		data: Ext.datos.LineaD
 	});
 	let arrDatosTipoD = Ext.create('Ext.data.Store', {
-		fields: ["cve", "sDescrip"],
+		fields: ["nTipoD", "sDescrip"],
 		data: Ext.datos.TipoD
 	});
 
@@ -108,9 +109,9 @@ Ext.onReady(function () {
 			sTipo = 'Pasteles'
 		} else if (nLinea == 2) {
 			sTipo = 'Galletas'
-		}else if (nLinea == 3) {
+		} else if (nLinea == 3) {
 			sTipo = 'Gelatinas'
-		}else{
+		} else {
 			sTipo = 'Panquesitos'
 		}
 
@@ -151,8 +152,8 @@ Ext.onReady(function () {
 							},
 							{
 								xtype: 'hiddenfield',
-								name: 'cmbLineaD',
-								value: nLineaD
+								name: 'cmbLinea',
+								value: nLinea
 							},
 							{
 								xtype: 'numberfield',
@@ -200,14 +201,17 @@ Ext.onReady(function () {
 								allowBlank: false
 							},
 							{
+								xtype: 'numberfield',
 								fieldLabel: 'Precio',
 								name: 'txtPrecio',
 								allowBlank: false
 							},
 							{
+								xtype: 'filefield',
 								fieldLabel: 'Imagen',
 								name: 'txtImg',
-								allowBlank: false
+								accept: 'image',
+								buttonText: 'Elegir...'
 							}
 						],
 						buttons: [{
@@ -238,7 +242,7 @@ Ext.onReady(function () {
 		frmInterna.findField("txtOpe").setValue(sOpe);
 		frmInterna.findField("cmbLinea").setValue(nLinea);
 		dlg.setTitle(btn.getText() + ' ' + sTipo);
-		
+
 		frmInterna.findField("cmbLineaD").setStore(arrDatosLineaD);
 		frmInterna.findField("cmbTipoD").setStore(arrDatosTipoD);
 
@@ -257,10 +261,54 @@ Ext.onReady(function () {
 			//En el store vienen todos los atributos, no es necesaria otra lectura
 			registro = datosStore.getAt(nLinActual);
 			console.log(registro.data);
+
+			//Comvertimos Valores de String a su Numero
+			let cmbLineaDl = 0;
+			let cmbTipoDl = 0;
+
+			switch (registro.data.linea) {
+				case "Pastel":
+					cmbLineaDl = 1
+					break;
+
+				case "Galleta":
+					cmbLineaDl = 2
+					break;
+
+				case "Gelatina":
+					cmbLineaDl = 3
+					break;
+
+				case "Panquesito":
+					cmbLineaDl = 4
+					break;
+
+			}
+
+			switch (registro.data.tipo) {
+				case "Normal":
+					cmbTipoDl = 1
+					break;
+
+				case "Dietético":
+					cmbTipoDl = 2
+					break;
+
+				case "Diabético":
+					cmbTipoDl = 3
+					break;
+
+				case "Vegano":
+					cmbTipoDl = 4
+					break;
+
+			}
+
+
 			frmInterna.findField("txtCve").setValue(registro.data.clave);
 			frmInterna.findField("txtNom").setValue(registro.data.nombre);
-			frmInterna.findField("cmbLineaD").setValue(registro.data.linea);
-			frmInterna.findField("cmbTipoD").setValue(registro.data.tipo);
+			frmInterna.findField("cmbLineaD").setValue(cmbLineaDl);
+			frmInterna.findField("cmbTipoD").setValue(cmbTipoDl);
 			frmInterna.findField("txtDescripcion").setValue(registro.data.descripcion);
 			frmInterna.findField("txtSabor").setValue(registro.data.sabor);
 			frmInterna.findField("txtPrecio").setValue(registro.data.precio);
@@ -302,7 +350,7 @@ Ext.onReady(function () {
 						nLinActual = -1;
 						nLinea = this.getValue();
 						datosStore.getProxy().url =
-							"control/ctrlBuscaProducto.php?cmbLinea=" + nLinea+ "&&cmbTipo=0";
+							"control/ctrlBuscaProducto.php?cmbLinea=" + nLinea + "&&cmbTipo=0";
 						datosStore.load();
 					}
 				}
@@ -324,7 +372,7 @@ Ext.onReady(function () {
 						nLinActual = -1;
 						nTipo = this.getValue();
 						datosStore.getProxy().url =
-							"control/ctrlBuscaProducto.php?cmbLinea=" + nLinea ;
+							"control/ctrlBuscaProducto.php?cmbLinea=" + nLinea + "&&cmbTipo=" + nTipo;
 						datosStore.load();
 					}
 				}
@@ -364,7 +412,7 @@ Ext.onReady(function () {
 						sortable: false, //permite o no que se reordene la información
 						hideable: false,
 						renderer: function (value) {
-							return '<img src="imgs/' + value + '">';
+							return '<img src="img/' + value + '">';
 						}
 					},
 					{
@@ -378,11 +426,11 @@ Ext.onReady(function () {
 					},
 					render: function (grid, opts) {
 						if (sessionStorage.getItem('nombreFirmado') === "") {
-							grid.columns[4].hide();
+							grid.columns[7].hide();
 							Ext.ComponentQuery.query('toolbar', grid)[0].hide();
 						}
 						else {
-							grid.columns[4].show();
+							grid.columns[7].show();
 							if (sessionStorage.getItem('tipoFirmado') === "Administrador")
 								Ext.ComponentQuery.query('toolbar', grid)[0].show();
 							else
