@@ -9,7 +9,8 @@ Ext.require([
 var sNomFirm = (sessionStorage.getItem('nombreFirmado') === null ? "" : sessionStorage.getItem('nombreFirmado'));
 var sTipoFirm = (sessionStorage.getItem('tipoFirmado') === null ? "" : sessionStorage.getItem('tipoFirmado'));
 var sClsMnAdmor = (sTipoFirm === 'Administrador' ? 'menu' : 'menu_inhab');
-var sClsMnCliente = (sTipoFirm === '' ? 'menu_inhab' : 'menu');
+var sClsMnCliente = (sTipoFirm === 'Cliente' ? 'menu' : 'menu_inhab' );
+var sClsMnCliRe = (sTipoFirm === '' ?   'menu' : 'menu_inhab' );
 var sClsMnSalir = (sTipoFirm === '' || sTipoFirm.length === 0 ? 'menu_inhab' : 'menu');
 
 
@@ -56,9 +57,9 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 	'<div class="navbar-nav ms-auto mx-lg-auto py-0">' +
 	'<a href="'+(sNomFirm === ''?'index.php':'inicio.php')+'" class="menu nav-item nav-link" id="mnuInicio">Inicio</a>'+			
 				'<a href="catalogo.php" class="menu nav-item nav-link" id="mnuCatalogo">Cat&aacute;logo de Productos</a>'+
-	/*			'<a href="clienteReg.php" class="'+' menu nav-item nav-link" id="mnuReg">Registrarse</a>'+
+				'<a href="clienteReg.php" class="'+sClsMnCliRe+' nav-item nav-link" id="mnuReg">Registrarse</a>'+
 				'<a href="productos.php" class="'+sClsMnAdmor+' nav-item nav-link" id="mnuGesP">Gestionar Productos</a>'+
-				'<a href="comprar.php" class="'+sClsMnCliente+'  nav-item nav-link" id="mnuCompra">Comprar</a>'+*/
+				'<a href="comprar.php" class="'+sClsMnCliente+' nav-item nav-link" id="mnuCompra">Comprar</a>'+
 				'<a href="javascript:salir();" class="'+sClsMnSalir+' nav-item nav-link" id="mnuSalir">Salir</a>'+
             '</div>'+
 	'</nav > ' +
@@ -80,7 +81,7 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 
 var pral = '<main id="main-content">' +
 	'<div class="forIng">' +
-	'<br><br><br><section id="sct1">' +
+	'<section id="sct1">' +
 	'<div class="col-lg-12 col-md-6 text-center">' +
 	'</div>' +
 	'</section>' +

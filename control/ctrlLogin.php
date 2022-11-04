@@ -30,7 +30,7 @@ $sNombre="";
 				if ($oUsu->buscarCvePwd()){
 					$_SESSION["sNomFirmado"] = $oUsu->getNombre();
 					$_SESSION["sDescFirmado"] = "Cliente";
-					$_SESSION["sTipoFirmado"] = "e";
+					$_SESSION["sTipoFirmado"] = "Cliente";
 				}else //no es cliente ni empleado
 					$nErr = ErroresAplic::USR_DESCONOCIDO;
 			}

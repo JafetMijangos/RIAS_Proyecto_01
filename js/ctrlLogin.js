@@ -68,18 +68,13 @@ Ext.onReady(function () {
 								});
 							Ext.get("mnuReg").set(
 								{
-									cls: "menu_inhab"
-										//(action.result.data.sDescTipo === 'Administrador' ? " menu_inhab" : "menu nav-item nav-link")
-								});
-							Ext.get("mnuReg").set(
-								{
-									cls: "menu_inhab"
-										//(action.result.data.sDescTipo === 'Cliente' ? "menu_inhab" : " menu")
+									cls: 
+										(action.result.data.sDescTipo === 'Cliente' || action.result.data.sDescTipo === 'Administrador' ? "menu_inhab" : " menu")
 								});
 							Ext.get("mnuCompra").set(
 								{
 									cls:
-										(action.result.data.sDescTipo === 'Cliente' ? "nav-item nav-link" : " menu_inhab")
+										(action.result.data.sDescTipo === 'Cliente' ? "menu nav-item nav-link" : " menu_inhab")
 								});
 						},
 						failure: function (form, action) {
