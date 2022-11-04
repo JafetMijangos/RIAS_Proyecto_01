@@ -16,8 +16,8 @@ Ext.datos.Linea = [
 Ext.datos.Tipo = [
     { "nTipo": 0, "sDescrip": "Todos" },
     { "nTipo": 1, "sDescrip": "Normal" },
-    { "nTipo": 2, "sDescrip": "Dietetico" },
-    { "nTipo": 3, "sDescrip": "Diabetico" },
+    { "nTipo": 2, "sDescrip": "Dietético" },
+    { "nTipo": 3, "sDescrip": "Diabético" },
     { "nTipo": 4, "sDescrip": "Vegano" }
 ];
 
@@ -31,8 +31,8 @@ Ext.datos.LineaD = [
 
 Ext.datos.TipoD = [
     { "nTipoD": 1, "sDescrip": "Normal" },
-    { "nTipoD": 2, "sDescrip": "Dietetico" },
-    { "nTipoD": 3, "sDescrip": "Diabetico" },
+    { "nTipoD": 2, "sDescrip": "Dietético" },
+    { "nTipoD": 3, "sDescrip": "Diabético" },
     { "nTipoD": 4, "sDescrip": "Vegano" }
 ];
 
@@ -405,7 +405,7 @@ Ext.onReady(function () {
                         dataIndex: 'tipo'
                     },
                     {
-                        text: 'Descripcion',
+                        text: 'Descripción',
                         width:180,
                         dataIndex: 'descripcion'
                     },

@@ -67,7 +67,7 @@ var navega = '<nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm 
 	'<div class="container py-5">' +
 	'<div class="row justify-content-start">' +
 	'<div class="col-lg-8 text-center text-lg-start">' +
-	'<h1 class="font-secondary text-primary mb-4">Pasteleria trigo de Oro</h1>' +
+	'<h1 class="font-secondary text-primary mb-4">Pastelería trigo de Oro</h1>' +
 	'<h1 class="display-1 text-uppercase text-white mb-4">¿Lo quieres?, ¡¡Lo tenemos!!</h1>' +
 	'<h1 class="text-uppercase text-white">Los mejores pasteles de Orizaba</h1>' +
 	'<figure>' +
@@ -94,7 +94,7 @@ var pie = '<div class="container-fluid service position-relative px-5 mt-5" styl
 	'<div class="col-lg-4 col-md-6">' +
 	'<div class="bg-primary border-inner text-center text-white p-5">' +
 	'<h4 class="text-uppercase mb-3">Pasteles y Panquecitos</h4>' +
-	'<p>Los mejores pasteles y panquesitos de orizaba,en diferentes presentaciones</p>' +
+	'<p>Los mejores pasteles y panquesitos de Orizaba,en diferentes presentaciones</p>' +
 	'</div>' +
 	'</div>' +
 	'<div class="col-lg-4 col-md-6">' +
@@ -193,7 +193,7 @@ var pie = '<div class="container-fluid service position-relative px-5 mt-5" styl
 	'</div>' +
 	'</div>' +
 	'<div class="bg-dark border-inner text-center p-4">' +
-	'<h4 class="text-uppercase text-primary">Emily S.</h4>' +
+	'<h4 class="text-uppercase text-primary">Emiliano S.</h4>' +
 	'<p class="text-white m-0">Pastelero</p>' +
 	'</div>' +
 	'</div>' +
@@ -209,7 +209,7 @@ var pie = '<div class="container-fluid service position-relative px-5 mt-5" styl
 	'</div>' +
 	'</div>' +
 	'<div class="bg-dark border-inner text-center p-4">' +
-	'<h4 class="text-uppercase text-primary">Paty L.</h4>' +
+	'<h4 class="text-uppercase text-primary">Patricia L.</h4>' +
 	'<p class="text-white m-0">Pastelera</p>' +
 	'</div>' +
 	'</div>' +
@@ -225,7 +225,7 @@ var pie = '<div class="container-fluid service position-relative px-5 mt-5" styl
 	'<a href="index.html" class="navbar-brand">' +
 	'<h1 class="m-0 text-uppercase text-white"><i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>PASTELES</h1>' +
 	'</a>' +
-	'<p class="mt-3">Nuestra pasteler&iacute;a se basa en brindar la mejor atenci&oacute;n y calidad' +
+	'<p class="mt-3">Nuestra pasteler&iacute;a se basa en brindar la mejor atenci&oacute;n y calidad ' +
 	'en nuestros productos, adem&aacute;s de que contamos con una extensa variedad para todos los gustos ' +
 	'y estilos de vida.' +
 	'</p>' +
