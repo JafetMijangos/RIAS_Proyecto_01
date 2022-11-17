@@ -1,7 +1,4 @@
-<?php
-include_once("header.html");
-include_once("menu.php");
-?>
+
 
 
 <!-- Contact Start -->

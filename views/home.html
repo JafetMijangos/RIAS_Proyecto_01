@@ -1,0 +1,36 @@
+<div ng-if="bProcesando">
+	Cargando datos...
+</div>
+
+<div class="forIng">
+	<header>
+		<h3 class="text-primary font-secondary">Ingresar al Sistema</h3>
+	</header>
+	<div layout="column" ng-show="!bFirmado">
+		<md-content layout-padding>
+			<form id="frmLogin" ng-submit="ingresar()">
+				<div layout-gt-sm="row">
+					<md-input-container class="md-block" flex-gt-sm>
+						<label for="txtCorreoUsu">Correo</label>
+						<input type="email" id="txtCorreoUsu" required ng-model="sCorreoUsu" />
+					</md-input-container>
+					<div flex="5" hide-xs hide-sm>
+						<!-- Espacio entre controles -->
+					</div>
+					<md-input-container class="md-block" flex-gt-sm>
+						<label for="txtPwd">Contrase&ntilde;a</label>
+						<input type="password" id="txtPwd" required ng-model="sPwd" />
+					</md-input-container>
+				</div>
+				<div layout-gt-sm="row">
+					<md-button class="md-raised md-primary" type="submit">Ingresar</md-button>
+				</div>
+			</form>
+		</md-content>
+
+	</div>
+	<div id="bienvenido" ng-if="bFirmado">
+		<h4 class="text-primary font-secondary">Hola <span>{{sNombreFirmado}}</span></h4>
+		<h5 class="display-4 text-uppercase">Est&aacute;s firmado como <span>{{sTipoFirmado}}</span></h5>
+	</div>
+</div>
