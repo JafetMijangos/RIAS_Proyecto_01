@@ -5,5 +5,5 @@ Autor:    Pasteleria
 */
 session_start(); //Le avisa al servidor que va a utilizar sesiones
 	session_destroy();
-	header("Location: ../index.php");
+	header("Location: ../index.html");
 ?>
