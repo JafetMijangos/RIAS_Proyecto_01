@@ -54,15 +54,15 @@ $oErr = null;
 				"arrProds": [
 		';
 		//Recorrer arreglo para llenar objetos
-		foreach($arrEncontrados as $oProducto){
+		foreach($arrEncontrados as $oProducto){// NOTA: SE MODIFICO EL NOMBRE DE LOS JSON POR TXT COMO EL GESTIONAR
 			$sJsonRet = $sJsonRet.'{
 					"clave": '.$oProducto->getClaveProducto().', 
 					"nombre":"'.$oProducto->getNombre().'", 
-					"linea":"'.$oProducto->getDescripcionLinea().'",
-					"tipo":"'.$oProducto->getDescripcionTipo().'",
-					"descripcion":"'.$oProducto->getDescripcion().'", 
-					"sabor":"'.$oProducto->getSabor().'", 
-					"imagen":"'.$oProducto->getImg().'", 
+					"cmbLineaD":"'.$oProducto->getDescripcionLinea().'",
+					"cmbTipoD":"'.$oProducto->getDescripcionTipo().'",
+					"txtDescripcion":"'.$oProducto->getDescripcion().'", 
+					"txtSabor":"'.$oProducto->getSabor().'", 
+					"txtImg":"'.$oProducto->getImg().'", 
 					"precio":'.$oProducto->getPrecio().',
 					"activo": ' . ($oProducto->getActivo() ? "true" : "false") . '
 					},';

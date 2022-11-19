@@ -40,18 +40,18 @@ if (
 	$nErr = ErroresAplic::NO_FIRMADO;
 }
 
-if ($nErr == -1) {
+if ($nErr == -1) {// NOTA: SE MODIFICO EL NOMBRE DE LOS JSON POR TXT COMO EL GESTIONAR
 	$sCadJson = '{
 			"success": true,
 			"status": "ok",
 			"data":{
 				"clave": '.$oProducto->getClaveProducto().', 
 				"nombre":"'.$oProducto->getNombre().'", 
-				"linea":"'.$oProducto->getLinea().'", 
-				"tipo":"'.$oProducto->getTipo().'",
-				"descripcion":"'.$oProducto->getDescripcion().'",  
-				"sabor":"'.$oProducto->getSabor().'", 
-				"imagen":"'.$oProducto->getImg().'", 
+				"cmbLineaD":"'.$oProducto->getLinea().'", 
+				"cmbTipoD":"'.$oProducto->getTipo().'",
+				"txtDescripcion":"'.$oProducto->getDescripcion().'",  
+				"txtSabor":"'.$oProducto->getSabor().'", 
+				"txtImg":"'.$oProducto->getImg().'", 
 				"precio":'.$oProducto->getPrecio().',
 				"activo": '.($oProducto->getActivo()?"true":"false").'
 			}

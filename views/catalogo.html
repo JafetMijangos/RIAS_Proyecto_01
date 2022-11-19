@@ -70,11 +70,11 @@ Autor:    Pasteles
 					<tr ng-repeat="productos in arrProductos">
 						<td>{{productos.clave}}</td>
 						<td>{{productos.nombre}}</td>
-						<td>{{productos.linea}}</td>
-						<td>{{productos.tipo}}</td>
-						<td>{{productos.descripcion}}</td>
-						<td>{{productos.sabor}}</td>
-						<td><img alt="Img Prod" src="img/{{productos.imagen}}" /></td>
+						<td>{{productos.cmbLineaD}}</td>
+						<td>{{productos.cmbTipoD}}</td>
+						<td>{{productos.txtDescripcion}}</td>
+						<td>{{productos.txtSabor}}</td>
+						<td><img alt="Img Prod" src="img/{{productos.txtImg}}" /></td>
 						<td ng-if="bFirmado">{{productos.precio}}</td>
 						<td ng-if="bEditable">
 							<md-button class="md-raised md-accent" type="button" ng-if="productos.activo"
@@ -116,7 +116,7 @@ Autor:    Pasteles
 					</div>
 
 					<md-input-container class="md-block" flex-gt-sm>
-						<label for="cmbLineaD" id="cmbLineaD">{{cmbLineaD}}</label>
+						<label for="cmbLineaD" id="cmbLineaD">Linea</label>
 						<md-select id="cmbLineaD" required aria-label="cmbLineaD" ng-model="productos.cmbLineaD"
 							ng-readonly="bDatosSoloLectura">
 							<md-option value="1">Pasteles</md-option>
@@ -131,7 +131,7 @@ Autor:    Pasteles
 					</div>
 
 					<md-input-container class="md-block" flex-gt-sm>
-						<label for="cmbTipoD" id="cmbTipoD">{{cmbTipoD}}</label>
+						<label for="cmbTipoD" id="cmbTipoD">Tipo</label>
 						<md-select id="cmbTipoD" required aria-label="cmbTipoD" ng-model="productos.cmbTipoD"
 							ng-readonly="bDatosSoloLectura">
 							<md-option value="1">Normal</md-option>
