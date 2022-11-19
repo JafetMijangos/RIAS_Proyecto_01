@@ -15,6 +15,9 @@ Autor:    equipo panecillo
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
+
+    <link href="css/animacionAngular.css" rel="stylesheet">
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -38,6 +41,7 @@ Autor:    equipo panecillo
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style2.css" rel="stylesheet">
+    
 
     <!--Cosas de Angular-->
     <link rel="stylesheet" href="../jslib/material/angular-material.min.css">
@@ -51,6 +55,7 @@ Autor:    equipo panecillo
     <script src="scripts/controllers/HomeController.js"></script>
     <script src="scripts/controllers/InicioController.js"></script>
     <script src="scripts/controllers/CatalogoController.js"></script>
+    <script src="scripts/controllers/NuevaAnimacionAngular.js"></script>
 </head>
 
 <body ng-app="aplic" ng-controller="ctrl">
@@ -69,6 +74,7 @@ Autor:    equipo panecillo
         </main>
         <!-- ingresar Start -->
         <div ng-include="'ser&Anim.html'" id="main-ser"></div>
+        <div ng-include="'nuevoAngular.html'" id="main-newAngular"></div>
         <div ng-include="'team.html'" id="main-team"></div>
         <div ng-include="'footer.html'" id="main-footer"></div>
     </div>

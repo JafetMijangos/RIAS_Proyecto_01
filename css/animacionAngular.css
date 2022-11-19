@@ -1,0 +1,72 @@
+.text-center {
+    text-align: center;
+  }
+  
+  .cssanimacion{
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .letra{
+    font-size: 1.5em;
+  }
+  
+  ul{
+    overflow: hidden;
+  }
+  
+  li span {
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .fade {
+    transition: 1s linear all;
+    -webkit-transition: 1s linear all;
+  }
+  
+  .fade.ng-enter {
+    margin-left: -150px;
+    opacity: 0;
+  }
+  
+  .fade.ng-enter.ng-enter-active {
+    animation-name: aparecer;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+  }
+  
+  .fade.ng-leave {
+    margin-left: 0px;
+    opacity: 1;
+  }
+  
+  .fade.ng-leave.ng-leave-active {
+    animation-name: desaparecer;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes aparecer {
+    from {          
+      margin-left: -150px;
+      opacity: 0;
+    }
+    to {
+      margin-left: 0px;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes desaparecer {
+    from {          
+      margin-left: 0px;
+      opacity: 1;
+    }
+    to {
+      margin-left: 150px;
+      opacity: 0;
+    }
+  }
+  

@@ -13,6 +13,10 @@ app.config(function ($routeProvider) {
 			templateUrl: 'views/home.html',
 			controller: 'HomeController'
 		})
+		.when('/nuevoAngular', {
+			templateUrl: 'views/nuevoAngular.html',
+			controller: 'NuevaAnimacionAngular'
+		})
 		.when('/inicio', {
 			templateUrl: 'views/inicio.html',
 			controller: 'InicioController'
@@ -70,6 +74,10 @@ app.controller("ctrl", function ($scope, $location, $http) {
 
 	$scope.eligeNavCatalogo = () => {
 		$location.path("/catalogo");
+	};
+
+	$scope.eligeSugerencias = () => {
+		$location.path("/nuevoAngular");
 	};
 
 	$scope.eligeNavCltes = () => {

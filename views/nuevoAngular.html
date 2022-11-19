@@ -1,0 +1,27 @@
+
+<div class="forIng">
+    <div class="letra">
+        <h1 class="text-center text-primary font-secondary">Añade tu Sugerencia</h1>
+        <br>
+
+        <ul class="text-primary font-secondary">
+            <li ng-repeat="pastel in pasteles" class="fade text-primary font-secondary">
+                {{pastel.nombre}}
+                <span class="text-primary font-secondary" ng-click="eliminarPasteles($index)">X</span>
+            </li>
+        </ul>
+    </div>
+
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <label class="text-primary font-secondary" for="postre">Postre</label>
+        <input class="text-primary font-secondary" type="text" id="postre" ng-model="pastel.nombre" />
+    </md-input-container>
+
+    <md-input-container class="md-block" flex-gt-sm>
+        <md-button class="md-raised md-primary" ng-click="agregarPasteles()">
+            Añadir
+        </md-button>
+    </md-input-container>
+
+</div>
